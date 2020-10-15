@@ -1,0 +1,38 @@
+.detail-container {
+  display: grid;
+  justify-content: center;
+  margin-top: 10px;
+}
+.detail-container-content {
+  margin: 6%;
+}
+
+.detail-title {
+  margin-bottom: 10%;
+}
+ion-fab-button.button-add-to-cart {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  border: 7px solid #121212;
+  border-radius: 50%;
+}
+.container-tab1 {
+  display: flex;
+  flex-flow: nowrap;
+  align-content: space-between;
+  /* fixed height, cao hơn độ cao của item cao nhất */
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.product-col {
+  width: 45%;
+  margin-left: 3%;
+
+  position: relative;
+  border-radius: 20px;
+}
+img {
+  border-radius: 20px;
+}

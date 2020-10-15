@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lịch sử mua hàng</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/home">Back</ion-back-button>
+
+
+</ion-buttons>
+
+
+<section>
+  <ion-button (click)="cleanAllCart()">Clean all</ion-button>
+
+</section>
+
+
+
+<ion-content>
+  <ion-item *ngFor="let product of productHistory">
+    <ion-thumbnail slot="start">
+      <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
+    </ion-thumbnail>
+    <ion-label>
+      <h3 routerLink="/detail-product/{{product.name}}">{{product.name}}</h3>
+      <p>{{product.price}} vnđ</p>
+      <p>{{product.category}}</p>
+
+<!-- 
+      <ion-button (click)="UpdateAlertMultipleButtons(user)" color="secondary">
+        <ion-icon name="add-outline"></ion-icon>
+
+        Thêm
+      </ion-button> -->
+
+      <ion-button (click)="deleteCartproduct(product.id)" color="danger">
+        <ion-icon name="trash-outline"></ion-icon>
+
+        Xoá
+      </ion-button>
+
+    </ion-label>
+
+  </ion-item>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Home </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="cart-button">
+    <ion-fab-button routerLink="/cart">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/history">
+      <ion-icon name="time-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="container-tab1">
+    <div class="product-col" *ngFor="let product of products">
+      <img src="assets/images/{{product.image}}" alt="" routerLink="/detail-product/{{product.name}}"
+        (click)="saveHistory(product)">
+      <ion-fab-button class="button-add-to-cart" (click)="saveCart(product)">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </div>
+  </div>
+
+
+</ion-content>
