@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Product } from '../../models/product.model';
 
 import { CrudStorageService } from '../../services/crud-storage.service';
@@ -14,7 +14,9 @@ export class HistoryPage implements OnInit {
     public productHistory: Array<Product> = [];
 
 
-  constructor(public storage: CrudStorageService, public alertController: AlertController) { }
+  constructor(public storage: CrudStorageService, 
+    public alertController: AlertController, 
+    public toastController: ToastController) { }
 
   async ngOnInit() {
     this.productHistory = await this.storage.read('proHistory');
@@ -22,26 +24,22 @@ export class HistoryPage implements OnInit {
   }
 
 
-    cleanAllCart(){
-      let deleteAllUser = () => {
-      this.storage.clear();
-    };
-      this.presentAlertMultipleButtons(
-      deleteAllUser,
-      "Cảnh báo",
-      "Bạn có muốn xóa hết giỏ hàng không?"
-    );
-  }
 
-   deleteCartproduct(cartid) {
-    let deletefunction = () => {
+
+  async deleteCartproduct(cartid) {
+     const toast = await this.toastController.create({
+      message: 'Đã xóa sản phẩm.',
+      duration: 2000
+    });
+toast.present();
       this.storage.delete(cartid);
-    };
-    this.presentAlertMultipleButtons(
-      deletefunction,
-      "Xóa sản phẩm",
-      "Bạn có muốn xóa sản phẩm không."
-    );
+      document.getElementById(cartid).style.display= "none"
+
+    // this.presentAlertMultipleButtons(
+    //   deletefunction,
+    //   "Xóa sản phẩm",
+    //   "Bạn có muốn xóa sản phẩm không."
+    // );
 
     // alert("da");
     // window.location.href = "/dashboard";
@@ -63,7 +61,8 @@ export class HistoryPage implements OnInit {
         {
           text: "Okay",
           handler: (blah) => {
-            funcadd(), (window.location.href = "/history");
+            funcadd()
+            // , (window.location.href = "/history")
           },
         },
       ],

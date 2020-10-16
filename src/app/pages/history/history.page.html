@@ -10,15 +10,12 @@
 </ion-buttons>
 
 
-<section>
-  <ion-button (click)="cleanAllCart()">Clean all</ion-button>
-
-</section>
+<!--  -->
 
 
 
 <ion-content>
-  <ion-item *ngFor="let product of productHistory">
+  <ion-item *ngFor="let product of productHistory" id={{product.id}}>
     <ion-thumbnail slot="start">
       <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
     </ion-thumbnail>

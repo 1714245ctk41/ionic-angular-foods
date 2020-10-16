@@ -52,7 +52,7 @@ if(this.product_detail[0]){
            }
            return this.products_relative;
           })
-          console.log(this.products_relative)
+          
           this.products_relative_1 = this.products_relative.slice(0, 2)
           this.products_relative_2 = this.products_relative.slice(2, 4)
           this.products_relative_3 = this.products_relative.slice(5, 7)

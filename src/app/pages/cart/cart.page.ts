@@ -20,7 +20,7 @@ export class CartPage implements OnInit {
     this.total =  this.productCart.reduce(function(a, b) {
         return a + b.soluongcart*b.price;
       }, 0);
-    console.log(this.total)
+    
   }
 
 
