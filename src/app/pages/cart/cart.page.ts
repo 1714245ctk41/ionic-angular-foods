@@ -19,16 +19,7 @@ export class CartPage implements OnInit {
     this.productCart = await this.storage.read('product');
   }
 
-   cleanAllCart(){
-      let deleteAllUser = () => {
-      this.storage.clear();
-    };
-      this.presentAlertMultipleButtons(
-      deleteAllUser,
-      "Cảnh báo",
-      "Bạn có muốn xóa hết giỏ hàng không?"
-    );
-  }
+ 
 
    deleteCartproduct(cartid) {
     let deletefunction = () => {

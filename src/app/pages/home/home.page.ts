@@ -4,6 +4,7 @@ import { firestore } from "firebase";
 import { CrudProductService } from "../../services/crud-database";
 import {Product} from "../../models/product.model";
 import { CrudStorageService } from '../../services/crud-storage.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,10 @@ export class HomePage implements OnInit {
     public productCart: Array<Product> = [];
 
   constructor(
-    private authentication: AuthenticationService, private productService: CrudProductService, public storage: CrudStorageService
+    private authentication: AuthenticationService, 
+    private productService: CrudProductService, 
+    public storage: CrudStorageService,
+    public toastController: ToastController
   ) {  this.productService.getUser('products').then(ref => {ref.docs.forEach(value => this.products.push(value.data()))});
       //  console.log(this.products);
       //  this.productService.addProductValue(this.productvalue, 'products');
@@ -28,6 +32,7 @@ export class HomePage implements OnInit {
    
 
      public async saveHistory(product) {
+       
     let key = await this.storage.generateKey('proHistory');
     let productstorage = {
       id: key,
@@ -45,6 +50,11 @@ export class HomePage implements OnInit {
 
 
      public async saveCart(product) {
+       const toast = await this.toastController.create({
+      message: 'Đã thêm vào giỏ hàng.',
+      duration: 2000
+    });
+    toast.present();
     let key = await this.storage.generateKey('product');
     let productstorage = {
       id: key,
