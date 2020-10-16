@@ -41,6 +41,7 @@ export class HomePage implements OnInit {
   tutorial: product.tutorial,
   category: product.category,
   image: product.image,
+  soluongcart: 1
     };
     await this.storage.create(key, productstorage);
     // this.productCart = await this.storage.read('productHistory');
@@ -54,8 +55,17 @@ export class HomePage implements OnInit {
       message: 'Đã thêm vào giỏ hàng.',
       duration: 2000
     });
-    toast.present();
-    let key = await this.storage.generateKey('product');
+toast.present();
+    this.productCart = await this.storage.read('productcart');
+    let productCart_find = this.productCart.find(element => {
+      return element.name == product.name
+    })
+    if(productCart_find){
+      productCart_find.soluongcart++;
+    this.storage.update(productCart_find)
+
+    }else{
+ let key = await this.storage.generateKey('productcart');
     let productstorage = {
       id: key,
       price: product.price,
@@ -63,12 +73,10 @@ export class HomePage implements OnInit {
   tutorial: product.tutorial,
   category: product.category,
   image: product.image,
+  soluongcart: 1
     };
     await this.storage.create(key, productstorage);
-    this.productCart = await this.storage.read('product');
-
-    console.log(this.productCart)
-
+    }
   }
 
 

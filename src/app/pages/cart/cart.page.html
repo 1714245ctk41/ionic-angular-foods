@@ -20,7 +20,11 @@
 
 
 <ion-content>
-<ion-item *ngFor="let product of productCart">
+<ion-toolbar>
+ <p> Tổng giá: </p><ion-title><b style="display: block;">{{total}} vnđ</b></ion-title> 
+</ion-toolbar>
+
+<ion-item *ngFor="let product of productCart" id="{{product.id}}"> 
   <ion-thumbnail slot="start">
     <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
   </ion-thumbnail>
@@ -35,21 +39,23 @@
        
         </ion-col>
         <ion-col>
-          <ion-button (click)="UpdateAlertMultipleButtons(user)" color="secondary">
-            <ion-icon name="add-outline"></ion-icon>
+         
+          <ion-item>
+            <ion-label position="stacked">Số lượng</ion-label>
+            <ion-input   [(ngModel)]="cart_slitem"  type="number" disabled>{{product.soluongcart}}</ion-input>
+          </ion-item>
+
+          <ion-button (click)="tangsoluong(product.id)" color="secondary">
+            <ion-icon name="add-outline" ></ion-icon>
           
-            
+          
           </ion-button>
           
           <ion-button (click)="deleteCartproduct(product.id)" color="danger">
             <ion-icon name="trash-outline"></ion-icon>
           
-            
+          
           </ion-button>
-          <ion-item>
-            <ion-label position="stacked">Số lượng</ion-label>
-            <ion-input value="1" type="number"></ion-input>
-          </ion-item>
         </ion-col>
 </ion-row>
   

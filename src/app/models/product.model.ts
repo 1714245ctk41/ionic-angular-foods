@@ -5,5 +5,6 @@ export interface Product {
   tutorial: string;
   category: string;
   image: string,
+  soluongcart: number
   // like: number;
 }

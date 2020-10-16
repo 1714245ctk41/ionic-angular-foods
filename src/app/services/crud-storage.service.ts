@@ -39,8 +39,8 @@ export class CrudStorageService {
     return await this.storage.set(key, user);
   }
 
-  public async update(user: Product) {
-    return await this.storage.set(user.name, user);
+  public async update(product: Product) {
+    return await this.storage.set(product.id, product);
   }
 
   public async delete(key: string) {
