@@ -24,25 +24,35 @@
   <ion-thumbnail slot="start">
     <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
   </ion-thumbnail>
-  <ion-label>
+  
+    <ion-row class="cart-container">
+        <ion-col>
     <h3 routerLink="/detail-product/{{product.name}}">{{product.name}}</h3>
     <p>{{product.price}} vnđ</p>
     <p>{{product.category}}</p>
    
        
-        <ion-button (click)="UpdateAlertMultipleButtons(user)" color="secondary">
-        <ion-icon name="add-outline"></ion-icon>
-    
-          Thêm
-        </ion-button>
-    
-        <ion-button (click)="deleteCartproduct(product.id)" color="danger">
-          <ion-icon name="trash-outline"></ion-icon>
-    
-          Xoá
-        </ion-button>
-
-  </ion-label>
+       
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="UpdateAlertMultipleButtons(user)" color="secondary">
+            <ion-icon name="add-outline"></ion-icon>
+          
+            
+          </ion-button>
+          
+          <ion-button (click)="deleteCartproduct(product.id)" color="danger">
+            <ion-icon name="trash-outline"></ion-icon>
+          
+            
+          </ion-button>
+          <ion-item>
+            <ion-label position="stacked">Số lượng</ion-label>
+            <ion-input value="1" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+</ion-row>
+  
   
 </ion-item>
 </ion-content>
