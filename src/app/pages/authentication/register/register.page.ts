@@ -43,9 +43,7 @@ export class RegisterPage implements OnInit {
     });
 
   }
-  abc(){
-    console.log(this.registerForm.get('email').value);
-  }
+
 
   async register() {
     if (this.formValidation()) {
@@ -68,6 +66,7 @@ export class RegisterPage implements OnInit {
               name: this.registerForm.get('name').value,
               sdt: this.registerForm.get('sdt').value,
               address: this.registerForm.get('address').value,
+              totalcart: 0
               // like: [],
             };
          
@@ -79,7 +78,7 @@ export class RegisterPage implements OnInit {
             
 
             // redirect to home page
-            this.navCtrl.navigateRoot("tabs");
+            this.navCtrl.navigateRoot("/home");
           });
       } catch (error) {
         this.showToast(error);

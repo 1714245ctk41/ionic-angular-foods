@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Thanh toán</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="cart-button">
+  <ion-fab-button routerLink="/cart">
+    <ion-icon name="cart-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button routerLink="/history">
+    <ion-icon name="time-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="come_home">
+  <ion-fab-button routerLink="/history">
+    <ion-icon name="home-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-content>
+
+
+  <form (ngSubmit)="logForm()">
+<ion-item>
+  <ion-label position="stacked">Tên</ion-label>
+  <ion-input [(ngModel)]="thanhtoan.name" name="name"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Email</ion-label>
+  <ion-input [(ngModel)]="thanhtoan.email" name="email"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Địa chỉ</ion-label>
+  <ion-input [(ngModel)]="thanhtoan.address" name="address"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Số điện thoại</ion-label>
+  <ion-input [(ngModel)]="thanhtoan.sdt" name="sdt"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Tổng số tiền</ion-label>
+  <ion-input [(ngModel)]="thanhtoan.totalcart" name="total"> </ion-input> vnđ
+</ion-item>
+<section>
+<ion-button type="submit" expand="block" class="ion-margin-top" >Đặt hàng</ion-button>
+</section>
+</form>
+</ion-content>

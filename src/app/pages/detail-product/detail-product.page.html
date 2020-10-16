@@ -9,6 +9,20 @@
 </ion-buttons>
 <ion-content *ngFor="let product of product_detail">
 
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="cart-button">
+    <ion-fab-button routerLink="/cart">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/history">
+      <ion-icon name="time-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
   <div class="detail-container">
    
     <img src="assets/images/{{product.image}}" alt="">
@@ -18,7 +32,17 @@
     <div class="detail-title">{{product.name}}</div>
     <div class="detail-title">{{product.price}} vnđ</div>
 
+    <ion-button (click)="saveCart(product)" color="secondary" class="ion-margin-bottom">
+      <ion-icon name="add-outline" expand="block"></ion-icon>
+      Thêm vào giỏ hàng
+    
+    </ion-button>
+
     <div class="detail-tutorial">{{product.tutorial}}</div>
+
+    
+
+
   </div>
 
   

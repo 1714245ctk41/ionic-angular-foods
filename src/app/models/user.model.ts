@@ -5,5 +5,6 @@ export interface User {
   name: string;
   sdt: number;
   address: string;
+  totalcart: number
   // like: Array<object>;
 }

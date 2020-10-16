@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CrudStorageService } from '../../services/crud-storage.service';
 import { AlertController } from "@ionic/angular";
 import { Product } from '../../models/product.model';
+import { User } from '../../models/user.model';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
@@ -11,18 +14,37 @@ import { Product } from '../../models/product.model';
 })
 export class CartPage implements OnInit {
     public productCart: Array<Product> = [];
+    public userSave = {};
+   public user =  {} as User;
+
+
   public total : number =0;
 
-  constructor(public storage: CrudStorageService, public alertController: AlertController) { }
+  constructor
+  (public storage: CrudStorageService, 
+    public alertController: AlertController,
+   
+    ) { }
 
   async ngOnInit() {
     this.productCart = await this.storage.read('productcart');
+
+   (await this.storage.readUser('person')).forEach(value=>{
+        this.user = value
+   });
+
     this.total =  this.productCart.reduce(function(a, b) {
         return a + b.soluongcart*b.price;
       }, 0);
-    
+
+
   }
 
+  thanhtoan(){
+  this.user['totalcart'] = this.total;
+    this.storage.updateUser( this.user, 'person');
+
+  }
 
  
   tangsoluong(productid){

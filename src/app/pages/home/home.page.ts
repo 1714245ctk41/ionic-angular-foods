@@ -21,14 +21,31 @@ export class HomePage implements OnInit {
     private productService: CrudProductService, 
     public storage: CrudStorageService,
     public toastController: ToastController
-  ) {  this.productService.getUser('products').then(ref => {ref.docs.forEach(value => this.products.push(value.data()))});
+  ) {  this.productService.getUser('products').then(ref => {ref.docs.forEach(
+    value =>{
+
+      let productintinitial = {
+        id: value.id,
+  price: value.data().price,
+  name: value.data().name,
+  tutorial: value.data().tutorial,
+  category: value.data().category,
+  image: value.data().image,
+  soluongcart: 1
+      }
+
+     this.products.push(productintinitial)
+    //  console.log(productintinitial)
+     }
+    )});
       //  console.log(this.products);
       //  this.productService.addProductValue(this.productvalue, 'products');
       
       
     }
      async ngOnInit() {
-    console.log( await this.storage.read('proHistory'));
+      let person =  await this.storage.read('person')
+    console.log(person );
 
   }
    
@@ -45,7 +62,9 @@ export class HomePage implements OnInit {
     // this.storage.update(productCart_find)
 
     }else{
- let key = await this.storage.generateKey('proHistory');
+//  let key = await this.storage.generateKey('proHistory');
+ let key = 'proHistory' + product.id;
+
     let productstorage = {
       id: key,
       price: product.price,
@@ -53,7 +72,8 @@ export class HomePage implements OnInit {
   tutorial: product.tutorial,
   category: product.category,
   image: product.image,
-  soluongcart: 1
+  soluongcart: 1,
+  
     };
     await this.storage.create(key, productstorage);
     }
@@ -78,7 +98,8 @@ toast.present();
     this.storage.update(productCart_find)
 
     }else{
- let key = await this.storage.generateKey('productcart');
+//  let key = await this.storage.generateKey('productcart');
+ let key = 'productcart' + product.id;
     let productstorage = {
       id: key,
       price: product.price,

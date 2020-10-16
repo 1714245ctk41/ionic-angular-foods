@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CrudProductService} from '../../services/crud-database';
 import {Product} from '../../models/product.model'; 
 import { ActivatedRoute } from "@angular/router";
+import { CrudStorageService } from 'src/app/services/crud-storage.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -10,6 +12,8 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./detail-product.page.scss'],
 })
 export class DetailProductPage implements OnInit {
+    public productCart: Array<Product> = [];
+  public total : number =0;
 
    slideOpts = {
     initialSlide: 0,
@@ -25,21 +29,36 @@ export class DetailProductPage implements OnInit {
 
 
 
-  constructor(private productService: CrudProductService,  private activatedRoute: ActivatedRoute,) {
+  constructor(
+    private productService: CrudProductService,  
+    private activatedRoute: ActivatedRoute,
+    public storage: CrudStorageService,
+    public toastController: ToastController
+    ) {
 
    }
 
-  ngOnInit() {
-    
+  async ngOnInit() {
+    this.productCart = await this.storage.read('productcart');
 
+    
     this.productname = this.activatedRoute.snapshot.paramMap.get("productname");
 
          this.productService.getUser('products').then(ref => {ref.docs.forEach(value =>
           { 
-            this.products.push(value.data());
+            let productintinitial = {
+            id: value.id,
+            price: value.data().price,
+            name: value.data().name,
+            tutorial: value.data().tutorial,
+            category: value.data().category,
+            image: value.data().image,
+            soluongcart: 1
+            }
+            this.products.push(productintinitial);
 
-            if(value.data().name == this.productname){
-            this.product_detail.push(value.data());
+            if(productintinitial.name == this.productname){
+            this.product_detail.push(productintinitial);
             }         
            
           });
@@ -56,10 +75,40 @@ if(this.product_detail[0]){
           this.products_relative_1 = this.products_relative.slice(0, 2)
           this.products_relative_2 = this.products_relative.slice(2, 4)
           this.products_relative_3 = this.products_relative.slice(5, 7)
-
-
          })
   }
+
+     public async saveCart(product) {
+       const toast = await this.toastController.create({
+      message: 'Đã thêm vào giỏ hàng.',
+      duration: 2000
+    });
+toast.present();
+
+    this.productCart = await this.storage.read('productcart');
+    let productCart_find = this.productCart.find(element => {
+      return element.name == product.name
+    })
+    if(productCart_find){
+      productCart_find.soluongcart++;
+    this.storage.update(productCart_find)
+
+    }else{
+//  let key = await this.storage.generateKey('productcart');
+ let key = 'productcart' + product.id;
+    let productstorage = {
+      id: key,
+      price: product.price,
+  name: product.name,
+  tutorial: product.tutorial,
+  category: product.category,
+  image: product.image,
+  soluongcart: 1
+    };
+    await this.storage.create(key, productstorage);
+    }
+  }
+
 }
 
 

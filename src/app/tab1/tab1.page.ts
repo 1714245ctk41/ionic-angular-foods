@@ -30,7 +30,7 @@ export class Tab1Page {
   constructor(private authentication: AuthenticationService, private productService: CrudProductService, public storage: CrudStorageService) {
     
     
-     this.productService.getUser('products').then(ref => {ref.docs.forEach(value => this.products.push(value.data()))});
+    //  this.productService.getUser('products').then(ref => {ref.docs.forEach(value => this.products.push(value.data()))});
       //  console.log(this.products);
       //  this.productService.addProductValue(this.productvalue, 'products');
       
@@ -38,39 +38,39 @@ export class Tab1Page {
     }
    
 
-     public async saveHistory(product) {
-    let key = await this.storage.generateKey('proHistory');
-    let productstorage = {
-      id: key,
-      price: product.price,
-  name: product.name,
-  tutorial: product.tutorial,
-  category: product.category,
-  image: product.image,
-    };
-    await this.storage.create(key, productstorage);
-    // this.productCart = await this.storage.read('productHistory');
+  //    public async saveHistory(product) {
+  //   let key = await this.storage.generateKey('proHistory');
+  //   let productstorage = {
+  //     id: key,
+  //     price: product.price,
+  // name: product.name,
+  // tutorial: product.tutorial,
+  // category: product.category,
+  // image: product.image,
+  //   };
+  //   await this.storage.create(key, productstorage);
+  //   // this.productCart = await this.storage.read('productHistory');
 
 
-  }
+  // }
 
 
-     public async saveCart(product) {
-    let key = await this.storage.generateKey('product');
-    let productstorage = {
-      id: key,
-      price: product.price,
-  name: product.name,
-  tutorial: product.tutorial,
-  category: product.category,
-  image: product.image,
-    };
-    await this.storage.create(key, productstorage);
-    this.productCart = await this.storage.read('product');
+  //    public async saveCart(product) {
+  //   let key = await this.storage.generateKey('product');
+  //   let productstorage = {
+  //     id: key,
+  //     price: product.price,
+  // name: product.name,
+  // tutorial: product.tutorial,
+  // category: product.category,
+  // image: product.image,
+  //   };
+  //   await this.storage.create(key, productstorage);
+  //   this.productCart = await this.storage.read('product');
 
-    console.log(this.productCart)
+  //   console.log(this.productCart)
 
-  }
+  // }
 
 
 

@@ -49,8 +49,9 @@ export class AuthenticationService {
         await this.afAuth
           .signInWithEmailAndPassword(user.email, user.password)
           .then((data) => {
+            console.log(data.user);
             this.readStorage("person").then((value) => console.log(value));
-
+            
             // this.getString(data.user.uid).then((data) =>
             //   {console.log(data);}
             // );

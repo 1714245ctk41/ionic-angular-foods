@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
+import { User } from '../models/user.model';
 import { Product } from '../models/product.model';
 
 
@@ -34,7 +35,25 @@ export class CrudStorageService {
     return users;
   }
 
+  public async readUser(valueforget): Promise<User[]> {
+    let users: Array<User> = [];
+    await this.storage.forEach((v, key, i) => {
+      if (key.startsWith(valueforget)) {
+        users.push(v);
+      }
+    });
+    return users;
+  }
+
+
+
+
   public async create(key: string, user: Product) {
+    
+    return await this.storage.set(key, user);
+  }
+
+   public async createUser(key: string, user: User) {
     
     return await this.storage.set(key, user);
   }
@@ -43,9 +62,25 @@ export class CrudStorageService {
     return await this.storage.set(product.id, product);
   }
 
+    public async updateUser(user: User, key: string) {
+    return await this.storage.set(key, user);
+  }
+
+
   public async delete(key: string) {
     return await this.storage.remove(key);
   }
+  public async deleteAllCart(valueforget: string) {
+    await this.storage.forEach((v, key, i) => {
+      if (key.startsWith(valueforget)) {
+         this.storage.remove(key);
+         document.getElementById(key).style.display = "none"
+      }
+    });
+   
+  }
+
+
   async clear() {
     await this.storage.clear();
   }
