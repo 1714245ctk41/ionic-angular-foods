@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudStorageService } from '../../services/crud-storage.service';
-import { AlertController } from "@ionic/angular";
+import { AlertController, NavController, ToastController } from "@ionic/angular";
 import { Product } from '../../models/product.model';
 import { User } from '../../models/user.model';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -17,13 +17,15 @@ export class CartPage implements OnInit {
     public userSave = {};
    public user =  {} as User;
 
-
-  public total : number =0;
+  public total_string :string;
+  public total = 0;
 
   constructor
   (public storage: CrudStorageService, 
     public alertController: AlertController,
-   
+   public toastController: ToastController,
+    private navCtrl: NavController,
+
     ) { }
 
   async ngOnInit() {
@@ -33,16 +35,32 @@ export class CartPage implements OnInit {
         this.user = value
    });
 
-    this.total =  this.productCart.reduce(function(a, b) {
+    this.total = ( this.productCart.reduce(function(a, b) {
         return a + b.soluongcart*b.price;
-      }, 0);
-
+      }, 0));
+    //  this.total_string =  this.numberFormat.format(this.total)
 
   }
 
-  thanhtoan(){
-  this.user['totalcart'] = this.total;
-    this.storage.updateUser( this.user, 'person');
+  async thanhtoan(){
+    if(this.total <= 0){
+ const toast = await this.toastController.create({
+      message: 'Giỏ hàng đang trống.',
+      duration: 2000
+    });
+toast.present();
+    }else if(this.total > 0){
+         
+         this.user['totalcart'] = this.numberFormat.format(this.total);
+         
+         this.storage.updateUser( this.user, 'person');
+          
+    // location.reload()
+    location.href = "/thanhtoan"
+
+          // this.navCtrl.navigateRoot("/thanhtoan");
+    }
+
 
   }
 
@@ -75,29 +93,12 @@ export class CartPage implements OnInit {
     // window.location.href = "/dashboard";
   }
 
+   numberFormat = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+});
 
-   async presentAlertMultipleButtons(funcadd, subheader, message) {
-    const alert = await this.alertController.create({
-      cssClass: "my-custom-class",
 
-      subHeader: subheader,
-      message: message,
-      buttons: [
-        {
-          text: "Cancel",
-          role: "cancel",
-          cssClass: "secondary",
-        },
-        {
-          text: "Okay",
-          handler: (blah) => {
-            funcadd(), (window.location.href = "/cart");
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
+  
 
 }

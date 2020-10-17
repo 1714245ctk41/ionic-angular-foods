@@ -3,15 +3,20 @@
     <ion-title>cart</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-buttons slot="start">
+<!-- <ion-buttons slot="start">
   <ion-back-button defaultHref="/home">Back</ion-back-button>
 
 
-</ion-buttons>
+</ion-buttons> -->
 
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="come_home">
+  <ion-fab-button routerLink="/home">
+    <ion-icon name="home-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 
 <section>
-  <ion-button expand="block" routerLink="/thanhtoan" (click) = "thanhtoan()">Thanh toán</ion-button>
+  <ion-button expand="block" id="thanhtoan_button"  (click) = "thanhtoan()">Thanh toán</ion-button>
 
   <!-- <ion-button color="warning" routerLink="/tabs/tab1">Chọn món</ion-button> -->
   <!-- <ion-button color="danger">Danger</ion-button> -->
@@ -21,7 +26,7 @@
 
 <ion-content>
 <ion-toolbar>
- <p> Tổng giá: </p><ion-title><b style="display: block;">{{total}} vnđ</b></ion-title> 
+ <p> Tổng giá: </p><ion-title><b style="display: block;">{{this.numberFormat.format(total)}} </b></ion-title> 
 </ion-toolbar>
 
 <ion-item *ngFor="let product of productCart" id="{{product.id}}"> 
@@ -32,7 +37,7 @@
     <ion-row class="cart-container">
         <ion-col>
     <h3 routerLink="/detail-product/{{product.name}}">{{product.name}}</h3>
-    <p>{{product.price}} vnđ</p>
+    <p>{{numberFormat.format(product.price)}}</p>
     <p>{{product.category}}</p>
    
        

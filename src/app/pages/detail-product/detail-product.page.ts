@@ -37,6 +37,11 @@ export class DetailProductPage implements OnInit {
     ) {
 
    }
+   
+     numberFormat = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+});
 
   async ngOnInit() {
     this.productCart = await this.storage.read('productcart');
@@ -112,7 +117,6 @@ toast.present();
 }
 
 
-  
   
 
 

@@ -18,7 +18,7 @@
   </ion-fab-button>
 </ion-fab>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="come_home">
-  <ion-fab-button routerLink="/history">
+  <ion-fab-button routerLink="/home">
     <ion-icon name="home-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -44,7 +44,7 @@
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Tổng số tiền</ion-label>
-  <ion-input [(ngModel)]="thanhtoan.totalcart" name="total"> </ion-input> vnđ
+  <ion-input [(ngModel)]="thanhtoan.totalcart" name="total" class="thanhtoan_input_total"> vnđ</ion-input> 
 </ion-item>
 <section>
 <ion-button type="submit" expand="block" class="ion-margin-top" >Đặt hàng</ion-button>

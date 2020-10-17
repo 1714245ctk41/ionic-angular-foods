@@ -35,7 +35,7 @@ export class CrudStorageService {
     return users;
   }
 
-  public async readUser(valueforget): Promise<User[]> {
+  public async readUser(valueforget) {
     let users: Array<User> = [];
     await this.storage.forEach((v, key, i) => {
       if (key.startsWith(valueforget)) {
@@ -62,6 +62,8 @@ export class CrudStorageService {
     return await this.storage.set(product.id, product);
   }
 
+  
+
     public async updateUser(user: User, key: string) {
     return await this.storage.set(key, user);
   }
@@ -74,7 +76,7 @@ export class CrudStorageService {
     await this.storage.forEach((v, key, i) => {
       if (key.startsWith(valueforget)) {
          this.storage.remove(key);
-         document.getElementById(key).style.display = "none"
+        //  document.getElementById(key).style.display = "none"
       }
     });
    

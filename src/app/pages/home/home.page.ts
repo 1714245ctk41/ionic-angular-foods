@@ -81,6 +81,10 @@ export class HomePage implements OnInit {
 
 
   }
+  reloadpage(){
+       location.href = "/cart"
+
+  }
 
 
      public async saveCart(product) {
