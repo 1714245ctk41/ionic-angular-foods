@@ -74,12 +74,9 @@ export class RegisterPage implements OnInit {
 
           
             this.userService.addUser(userStorage, data.user.uid, 'user');
-            
             this.authentication.setStorage("person", userStorage);
-            
-
             // redirect to home page
-            this.navCtrl.navigateRoot("tabs");
+            this.navCtrl.navigateRoot("home");
           });
       } catch (error) {
         this.showToast(error);

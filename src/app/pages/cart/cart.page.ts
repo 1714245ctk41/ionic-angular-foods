@@ -11,10 +11,7 @@ import { Product } from '../../models/product.model';
 })
 export class CartPage implements OnInit {
     public productCart: Array<Product> = [];
-
-
   constructor(public storage: CrudStorageService, public alertController: AlertController) { }
-
   async ngOnInit() {
     this.productCart = await this.storage.read('product');
   }

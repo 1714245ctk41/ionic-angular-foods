@@ -5,6 +5,7 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AuthenticationService } from "./services/authentication.service";
 import { NavController } from "@ionic/angular";
+import { CrudProductService } from "./services/crud-database";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -17,6 +18,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private authService:AuthenticationService,
      private navCtrl:NavController,
+     private userService:CrudProductService,
   ) {
     this.initializeApp();
   }
@@ -28,6 +30,7 @@ export class AppComponent {
     });
   }
    logOut(){
+     this.userService.currentUser=null;
     this.authService.logoutUser();
   }
   logIn(){

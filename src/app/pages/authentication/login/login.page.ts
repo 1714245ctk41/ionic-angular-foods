@@ -25,7 +25,6 @@ export class LoginPage implements OnInit {
     // await this.authentication.getUser_info(user);
   }
  async loginWithGoogle() {
-
         await this.authentication.signInWithGoogle().then((res)=>{
            let userStorage = {
               id: res.uid,

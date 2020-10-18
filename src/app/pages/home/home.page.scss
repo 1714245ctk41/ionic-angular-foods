@@ -1,3 +1,16 @@
+ion-header {
+  overflow: hidden;
+}
+ion-toolbar {
+  background-color: orange;
+}
+ion-title {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
 ion-fab-button.button-add-to-cart {
   position: absolute;
   bottom: -10px;
@@ -21,6 +34,7 @@ ion-fab-button.button-add-to-cart {
 }
 .product-col {
   width: 45%;
+
   margin: 3%;
 
   position: relative;

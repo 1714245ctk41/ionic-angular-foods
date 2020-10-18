@@ -17,7 +17,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private authentication: AuthenticationService, private productService: CrudProductService, public storage: CrudStorageService
-  ) {  this.productService.getUser('products').then(ref => {ref.docs.forEach(value => this.products.push(value.data()))});
+  ) {  
+    this.productService.getUser('products').then(ref => {ref.docs.forEach(value => this.products.push(value.data()))});
       //  console.log(this.products);
       //  this.productService.addProductValue(this.productvalue, 'products');
       

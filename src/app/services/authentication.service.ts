@@ -6,7 +6,7 @@ import { User } from "../models/user.model";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Storage } from "@ionic/storage";
 import { auth } from "firebase/app";
-
+import {CrudProductService} from './crud-database';
 import {
   LoadingController,
   NavController,
@@ -26,7 +26,8 @@ export class AuthenticationService {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private userService:CrudProductService,
   ) {}
 
   async setStorage(key: string, value: User) {
@@ -50,8 +51,8 @@ export class AuthenticationService {
         await this.afAuth
           .signInWithEmailAndPassword(user.email, user.password)
           .then((data) => {
+            this.userService.addUser(user,data.user.uid,'user');
             this.readStorage("person").then((value) => console.log(value));
-
             // this.getString(data.user.uid).then((data) =>
             //   {console.log(data);}
             // );

@@ -1,3 +1,17 @@
+ion-header {
+  overflow: hidden;
+}
+ion-toolbar {
+  background-color: orange;
+  border: none;
+}
+ion-title {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .detail-container {
   display: grid;
   justify-content: center;
