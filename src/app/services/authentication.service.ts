@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 import { User } from "../models/user.model";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Storage } from "@ionic/storage";
+import { auth } from "firebase/app";
 
 import {
   LoadingController,
@@ -79,6 +80,25 @@ export class AuthenticationService {
     }
     return true;
   }
+  signInWithGoogle = async() => {
+    const {user} = await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
+     this.navCtrl.navigateRoot("/home");
+    return user;
+  };
+    logoutUser(){
+      return new Promise((resolve, reject) => {
+      if (this.afAuth.currentUser) {
+        this.afAuth
+          .signOut()
+          .then(() => {
+            resolve();
+          })
+          .catch((error) => {
+            reject();
+          });
+      }
+    });
+    }
 
   showToast(message: string) {
     this.toastCtrl
