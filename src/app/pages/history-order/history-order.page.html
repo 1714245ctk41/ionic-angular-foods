@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chi tiết đơn hàng</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/history"></ion-back-button>
+</ion-buttons>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="come_home">
+  <ion-fab-button routerLink="/home">
+    <ion-icon name="home-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content>
+
+  <ion-list *ngFor="let hoas_item of hoadon_show"  >
+    <ion-item>
+      <ion-label>Tên: {{hoas_item.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Số điện thoại: {{hoas_item.sdt}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email: {{hoas_item.email}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Địa chỉ: {{hoas_item.address}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tổng số tiền: {{hoas_item.totalcart}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+<ion-content>
+  <ion-toolbar class="ion-margin-top">
+    <ion-title>Sản phẩm đã mua</ion-title>
+  </ion-toolbar>
+
+<ion-item *ngFor="let product of product_buyed" id={{product.id}}>
+  <ion-thumbnail slot="start">
+    <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
+  </ion-thumbnail>
+  <ion-label>
+    <h3 routerLink="/detail-product/{{product.name}}">{{product.name}}</h3>
+    <p>{{product.price}} vnđ</p>
+    <p>{{product.category}}</p>
+
+
+  </ion-label>
+
+</ion-item>
+</ion-content>

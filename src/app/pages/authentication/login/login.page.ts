@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { CrudProductService } from 'src/app/services/crud-database';
-import { CrudStorageService } from 'src/app/services/crud-storage.service';
+import { CrudProductService } from '../../../services/crud-database';
+import { CrudStorageService } from '../../../services/crud-storage.service';
 
 import { User } from "../../../models/user.model";
 import { AuthenticationService } from "../../../services/authentication.service";
@@ -24,8 +24,8 @@ export class LoginPage implements OnInit {
 
   async login(user) {
    
-    user.email = "1714245ctk41@gmail.com";
-    user.password = "1714245ctk41";
+    // user.email = "1714245ctk41@gmail.com";
+    // user.password = "1714245ctk41";
     this.authentication.user.email = user.email;
     this.authentication.user.password = user.password;
     await this.authentication.login(user);

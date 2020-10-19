@@ -4,7 +4,7 @@ import { AlertController, NavController, ToastController } from "@ionic/angular"
 import { Product } from '../../models/product.model';
 import { User } from '../../models/user.model';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 
 @Component({
@@ -21,7 +21,8 @@ export class CartPage implements OnInit {
   public total = 0;
 
   constructor
-  (public storage: CrudStorageService, 
+  (
+    public storage: CrudStorageService, 
     public alertController: AlertController,
    public toastController: ToastController,
     private navCtrl: NavController,
@@ -30,6 +31,7 @@ export class CartPage implements OnInit {
 
   async ngOnInit() {
     this.productCart = await this.storage.read('productcart');
+   
 
    (await this.storage.readUser('person')).forEach(value=>{
         this.user = value
@@ -39,6 +41,7 @@ export class CartPage implements OnInit {
         return a + b.soluongcart*b.price;
       }, 0));
     //  this.total_string =  this.numberFormat.format(this.total)
+    // console.log(this.productCart)
 
   }
 

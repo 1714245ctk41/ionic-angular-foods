@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Lịch sử mua hàng</ion-title>
+    <ion-title>History</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-buttons slot="start">
@@ -11,18 +11,28 @@
 
 
 <!--  -->
+<ion-content class="ion-margin-bottom">
 
 
+ <ion-toolbar>
+    <ion-title>Các đơn đã đặt hàng</ion-title>
+  </ion-toolbar>
 
-<ion-content>
-  <ion-item *ngFor="let product of productHistory" id={{product.id}}>
-    <ion-thumbnail slot="start">
+
+  <ion-item *ngFor="let hoadon of hoa_don" >
+    <!-- <ion-thumbnail slot="start">
       <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
-    </ion-thumbnail>
+    </ion-thumbnail> -->
     <ion-label>
-      <h3 routerLink="/detail-product/{{product.name}}">{{product.name}}</h3>
-      <p>{{product.price}} vnđ</p>
-      <p>{{product.category}}</p>
+      <h3 >{{hoadon.name}}</h3>
+      <p>Giá trị hóa đơn: {{hoadon.totalcart}} vnđ</p>
+    
+      <ion-button routerLink="/history-order/{{hoadon.totalcart}}" >
+       
+
+        Xem chi tiết
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
 
 <!-- 
       <ion-button (click)="UpdateAlertMultipleButtons(user)" color="secondary">
@@ -31,6 +41,36 @@
         Thêm
       </ion-button> -->
 
+      <!-- <ion-button (click)="deleteCartproduct(product.id)" color="danger">
+        <ion-icon name="trash-outline"></ion-icon>
+
+        Xoá
+      </ion-button> -->
+
+    </ion-label>
+
+  </ion-item>
+
+
+</ion-content>
+
+
+<ion-content class="ion-margin-top">
+
+
+  <ion-toolbar class="ion-margin-top">
+    <ion-title>Đã xem gần đây</ion-title>
+  </ion-toolbar>
+
+
+  <ion-item *ngFor="let product of productHistory" id={{product.id}}>
+    <ion-thumbnail slot="start">
+      <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
+    </ion-thumbnail>
+    <ion-label>
+      <h3 routerLink="/detail-product/{{product.name}}">{{product.name}}</h3>
+      <p>{{product.price}} vnđ</p>
+      <p>{{product.category}}</p>
       <ion-button (click)="deleteCartproduct(product.id)" color="danger">
         <ion-icon name="trash-outline"></ion-icon>
 
@@ -40,4 +80,6 @@
     </ion-label>
 
   </ion-item>
+
+  
 </ion-content>

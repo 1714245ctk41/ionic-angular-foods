@@ -8,14 +8,14 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="cart-button">
     <!-- <ion-fab-button routerLink="/cart"> -->
-    <ion-fab-button (click) = "reloadpage()">
+    <ion-fab-button (click) = "reloadpage()" color="warning">
 
       <ion-icon name="cart-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/history">
+    <ion-fab-button routerLink="/history" color="light">
       <ion-icon name="time-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -24,7 +24,7 @@
     <div class="product-col" *ngFor="let product of products">
       <img src="assets/images/{{product.image}}" alt="" routerLink="/detail-product/{{product.name}}"
         (click)="saveHistory(product)">
-      <ion-fab-button class="button-add-to-cart" (click)="saveCart(product)">
+      <ion-fab-button color="danger" class="button-add-to-cart" (click)="saveCart(product)">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </div>

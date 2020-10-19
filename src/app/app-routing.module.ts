@@ -49,6 +49,11 @@ const routes: Routes = [
     path: 'thanhtoan',
     loadChildren: () => import('./pages/thanhtoan/thanhtoan.module').then( m => m.ThanhtoanPageModule)
   },
+  {
+    path: 'history-order/:ordertotal',
+    loadChildren: () => import('./pages/history-order/history-order.module').then( m => m.HistoryOrderPageModule)
+  },
+
 ];
 @NgModule({
   imports: [

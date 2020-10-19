@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Product } from '../../models/product.model';
+import { User } from '../../models/user.model';
+import { CrudProductService } from '../../services/crud-database';
 
 import { CrudStorageService } from '../../services/crud-storage.service';
 
@@ -12,14 +14,44 @@ import { CrudStorageService } from '../../services/crud-storage.service';
 })
 export class HistoryPage implements OnInit {
     public productHistory: Array<Product> = [];
+    public hoa_don: Array<User> = [];
+    public personCurrent: User;
+    public hoa_don_1: Array<User> = [];
 
 
-  constructor(public storage: CrudStorageService, 
+
+  constructor(
+    public storage: CrudStorageService, 
     public alertController: AlertController, 
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    public crudProductService: CrudProductService
+    ) { }
 
   async ngOnInit() {
     this.productHistory = await this.storage.read('proHistory');
+    (await this.storage.readUser('person')).forEach(value=>{
+
+      this.personCurrent = value;
+    });
+    // console.log(this.personCurrent.id)
+    this.crudProductService.getUser('hoa_don').then(value => {
+      value.docs.forEach(hoadon => {
+       if(this.personCurrent.id == hoadon.data().id){
+        let hoa_don_ter = {
+          id: hoadon.data().id,
+          email: hoadon.data().email,
+          password: hoadon.data().password,
+          name: hoadon.data().name,
+          sdt: hoadon.data().sdt,
+          address: hoadon.data().address,
+          totalcart: hoadon.data().totalcart,   
+             }
+       this.hoa_don.push(hoa_don_ter)
+
+       }
+      })
+    })
+    console.log(this.hoa_don)
 
   }
 
