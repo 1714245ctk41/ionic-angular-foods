@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     // user.password = "1714245ctk41";
     this.authentication.user.email = user.email;
     this.authentication.user.password = user.password;
-    await this.authentication.login(user);
+     this.authentication.login(user);
     this.cruddatabase.getUser('user').then(value=>{
       value.docs.forEach(value=>{
         if(value.data().email == user.email){

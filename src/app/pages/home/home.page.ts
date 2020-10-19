@@ -21,7 +21,11 @@ export class HomePage implements OnInit {
     private productService: CrudProductService, 
     public storage: CrudStorageService,
     public toastController: ToastController
-  ) {  this.productService.getUser('products').then(ref => {ref.docs.forEach(
+  ) {  
+
+    
+    
+    this.productService.getUser('products').then(ref => {ref.docs.forEach(
     value =>{
 
       let productintinitial = {
