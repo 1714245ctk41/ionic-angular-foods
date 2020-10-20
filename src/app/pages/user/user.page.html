@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="orange">
+    <div class="header">
+      <img class="icon" src="../../assets/fast-food.svg" alt="icon">
+    <ion-title>
+      Thông tin cá nhân
+    </ion-title>
+    </div>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" style="color:white">Back</ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="this.userService.currentUser; else notLogIn">
+  <img class="user-icon1" src="../../assets/fast-food.svg" alt="icon">
+  <div class="user-info">
+    <ion-label>Thông tin người dùng</ion-label>
+    <p>Email: {{this.userService.currentUser.email}}</p>
+    <p>Tên: {{this.userService.currentUser.name}}</p>
+    <p>Số điện thoại: {{this.userService.currentUser.sdt}}</p>
+    <p>Địa chỉ: {{this.userService.currentUser.address}}</p>
+  </div>
+</ion-content>
+<ng-template #notLogIn>
+  <img class="user-icon" src="../../assets/fast-food.svg" alt="icon">
+<div class="user-info">
+  <ion-label>Đăng nhập để hiển thị chức năng này</ion-label>
+  <ion-button (click)="goToLogin()">Tới trang đăng nhập</ion-button>
+</div>
+</ng-template>

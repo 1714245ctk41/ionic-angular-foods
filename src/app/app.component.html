@@ -1,10 +1,11 @@
 <ion-app>
   <ion-menu menuId="main-menu" content-id="main">
-    <ion-content *ngIf="this.currentUser; else notLogIn">
+    <ion-content *ngIf="this.userService.currentUser; else notLogIn">
       <div class="background">
+        <h2>FoodD</h2>
         <p style="color:white;text-align:center; padding:0;margin:0">Xin chào {{this.userService.currentUser.name}}</p>
         <ion-avatar>
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+          <img src="../assets/fast-food.svg" />
         </ion-avatar>
       </div>
       <ion-list>
@@ -15,7 +16,7 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item routerLink="/tabs/tab3">
+          <ion-item routerLink="/user">
             <ion-icon name="person" slot="start"></ion-icon>
             <ion-label>Xem thông tin cá nhân</ion-label>
           </ion-item>
@@ -49,8 +50,9 @@
     <ng-template #notLogIn>
       <ion-content>
       <div class="background">
+        <h2>FoodD</h2>
               <ion-avatar>
-                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&w=1000&q=80" />
+                <img src="../assets/fast-food.svg" />
               </ion-avatar>
             </div>
             <ion-list>

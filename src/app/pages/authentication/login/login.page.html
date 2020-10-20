@@ -1,7 +1,10 @@
 <div class="page-container">
 
   <div class="login-container">
-  <ion-label class="header"> FoodD </ion-label>
+  <ion-label class="header"> 
+    <img class="icon" src="../../../assets/fast-food.svg" alt="icon">
+    
+    FoodD </ion-label>
     <ion-input type="email"  placeholder="&#xf199; Email"
         class="fontAwesome" required [(ngModel)]="user.email"></ion-input>
     <ion-input type="password"   type="password"
@@ -11,7 +14,7 @@
     >ĐĂNG NHẬP</ion-button
   >
   <ion-button class="ion-padding" expand="block" (click)="loginWithGoogle()">ĐĂNG NHẬP BẰNG GOOGLE</ion-button>
-  <ion-label>Chưa có tài khoản? 
+  <ion-label class="regis">Chưa có tài khoản? 
       <ion-router-link href="/register">đăng kí tại đây</ion-router-link>
   </ion-label>
 </div>

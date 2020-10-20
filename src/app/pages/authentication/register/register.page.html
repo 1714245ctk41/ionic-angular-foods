@@ -3,7 +3,10 @@
 <div class="page-container">
    
   <div class="register-container">
-<ion-label class="header"> FoodD </ion-label>
+    
+<ion-label class="header"> 
+  <img class="icon" src="../../../assets/fast-food.svg" alt="icon">
+  FoodD </ion-label>
 
   <form [formGroup]="registerForm" (ngSubmit)="register()">
 
@@ -24,6 +27,8 @@
         type="text"
         required
         formControlName="name"
+           placeholder="&#xf2bd; Tên hiển thị"
+        class="fontAwesome"
         required
       ></ion-input>
     
@@ -33,6 +38,9 @@
         type="number"
         required
         formControlName="sdt"
+         placeholder="&#xf095; Số điện thoại"
+        class="fontAwesome"
+        required
         required
       ></ion-input>
    
@@ -42,14 +50,19 @@
         type="text"
         required
         formControlName="address"
+         placeholder="&#xf2b9; Địa chỉ"
+        class="fontAwesome"
+        required
         required
       ></ion-input>
    
 
     <ion-button type="submit" class="ion-padding" expand="block">ĐĂNG KÍ</ion-button>
+    <div class="login">
       <ion-label>Đã có tài khoản?
         <ion-router-link href="/login">đăng nhập tại đây</ion-router-link>
       </ion-label>
+</div>
   </form>
     </div>
 

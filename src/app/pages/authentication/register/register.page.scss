@@ -16,9 +16,9 @@
     height: auto;
     margin: auto;
     z-index: 1;
-    ion-label {
+    .login {
       color: white;
-      margin-top: 20px;
+      padding-top: 20px;
       font-size: 18px;
     }
     ion-input {
@@ -42,6 +42,12 @@
     border-bottom: 0.3px solid green;
     font-weight: bold;
     color: white;
-    font-size: 30px;
+    font-size: 50px;
+    font-family: Brush Script MT, Brush Script Std, cursive;
+
+    .icon {
+      width: 100px;
+      height: 100px;
+    }
   }
 }

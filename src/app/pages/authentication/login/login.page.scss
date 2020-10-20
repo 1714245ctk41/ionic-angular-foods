@@ -15,10 +15,10 @@
     margin: auto;
     background: none;
     z-index: 1;
-    ion-label {
+    .regis {
       color: white;
       margin-top: 20px;
-      font-size: 20px;
+      font-size: 15px;
     }
     ion-input {
       margin-top: 30px;
@@ -38,8 +38,14 @@
   }
   .header {
     border-bottom: 0.3px solid green;
+    font-family: Brush Script MT, Brush Script Std, cursive;
     font-weight: bold;
     color: white;
     font-size: 50px;
+
+    .icon {
+      width: 100px;
+      height: 100px;
+    }
   }
 }
