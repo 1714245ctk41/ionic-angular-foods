@@ -1,5 +1,84 @@
 <ion-app>
-  <ion-router-outlet>
+  <ion-menu menuId="main-menu" content-id="main">
+    <ion-content *ngIf="this.userService.currentUser; else notLogIn">
+      <div class="background">
+        <h2>FoodD</h2>
+        <p style="color:white;text-align:center; padding:0;margin:0">Xin chào {{this.userService.currentUser.name}}</p>
+        <ion-avatar>
+          <img src="../assets/fast-food.svg" />
+        </ion-avatar>
+      </div>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item routerLink="/home">
+            <ion-icon name="home" slot="start"></ion-icon>
+            <ion-label>Trang chủ</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/user">
+            <ion-icon name="person" slot="start"></ion-icon>
+            <ion-label>Xem thông tin cá nhân</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/favorite">
+            <ion-icon name="heart" slot="start"></ion-icon>
+            <ion-label>Sản phẩm yêu thích</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/cart">
+            <ion-icon name="cart" slot="start"></ion-icon>
+            <ion-label>Giỏ hàng</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item routerLink="/history">
+        <ion-icon name="sync-circle-outline" slot="start"></ion-icon>
+              <ion-label>Lịch sử mua hàng</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item  (click)="logOut()">
+            <ion-icon name="walk" slot="start"></ion-icon>
+            <ion-label>Đăng xuất</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    <ng-template #notLogIn>
+      <ion-content>
+      <div class="background">
+        <h2>FoodD</h2>
+              <ion-avatar>
+                <img src="../assets/fast-food.svg" />
+              </ion-avatar>
+            </div>
+            <ion-list>
+              <ion-menu-toggle>
+                <ion-item routerLink="/home">
+                  <ion-icon name="home" slot="start"></ion-icon>
+                  <ion-label>Trang chủ</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+              <ion-menu-toggle>
+                <ion-item routerLink="/cart">
+                  <ion-icon name="cart" slot="start"></ion-icon>
+                  <ion-label>Giỏ hàng</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+              <ion-menu-toggle>
+                <ion-item (click)="logIn()">
+                  <ion-icon name="key" slot="start"></ion-icon>
+                  <ion-label>Đăng nhập</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+            </ion-content>
+    </ng-template>
+   </ion-menu>
+  <ion-router-outlet id="main">
   </ion-router-outlet>
 </ion-app>
 
