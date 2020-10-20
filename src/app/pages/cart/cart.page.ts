@@ -34,7 +34,8 @@ export class CartPage implements OnInit {
    
 
    (await this.storage.readUser('person')).forEach(value=>{
-        this.user = value
+        this.user = value;
+        console.log(value)
    });
 
     this.total = ( this.productCart.reduce(function(a, b) {
@@ -42,6 +43,7 @@ export class CartPage implements OnInit {
       }, 0));
     //  this.total_string =  this.numberFormat.format(this.total)
     console.log(this.productCart)
+
 
   }
 
@@ -52,15 +54,17 @@ export class CartPage implements OnInit {
       duration: 2000
     });
 toast.present();
-    }else if(this.total > 0){
+    }else{
          
          this.user['totalcart'] = this.numberFormat.format(this.total);
-         
-         this.storage.updateUser( this.user, 'person');
+        //  alert(this.user.totalcart)
+        //  this.storage.delete('person')
+        //  this.storage.createUser('person', this.user)
+        await this.storage.updateUser(this.user, "person")
           
     // location.reload()
     location.href = "/thanhtoan"
-
+      // console.log(this.user)
           // this.navCtrl.navigateRoot("/thanhtoan");
     }
 
@@ -91,7 +95,7 @@ toast.present();
       this.storage.delete(cartid);
     
     }
-    console.log(productupdate)
+    // console.log(productupdate)
 
     // alert("da");
     // window.location.href = "/dashboard";

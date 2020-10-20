@@ -33,12 +33,13 @@ export class ThanhtoanPage implements OnInit {
   async ngOnInit() {
     this.productCart = await this.storage.read('productcart');
   
-      
+     
 
       (await this.storage.readUser('person')).forEach(value=>{
         this.thanhtoan=value
+
       });
-      console.log(this.productCart[0])
+      console.log(this.thanhtoan)
     //  this.crudProductService.getUser("hoa_don").then(value =>
     //    value.docs.forEach(value => {
     //      console.log(value.id)
