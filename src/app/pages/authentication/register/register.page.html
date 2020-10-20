@@ -1,58 +1,69 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+
+<div class="page-container">
+   
+  <div class="register-container">
+    
+<ion-label class="header"> 
+  <img class="icon" src="../../../assets/fast-food.svg" alt="icon">
+  FoodD </ion-label>
+
   <form [formGroup]="registerForm" (ngSubmit)="register()">
-    <ion-item>
-      <ion-label position="floating">E-mail</ion-label>
-      <ion-input type="email" required formControlName="email"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
+      <ion-input type="email" required formControlName="email" placeholder="&#xf199; Email"
+        class="fontAwesome"></ion-input>
+  
       <ion-input
         type="password"
         required
         formControlName="password"
         required
+         placeholder="&#xf023; Mật khẩu"
+        class="fontAwesome"
       ></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Tên hiển thị</ion-label>
+   
       <ion-input
         type="text"
         required
         formControlName="name"
+           placeholder="&#xf2bd; Tên hiển thị"
+        class="fontAwesome"
         required
       ></ion-input>
-    </ion-item>
+    
 
-    <ion-item>
-      <ion-label position="floating">Số điện thoại</ion-label>
+
       <ion-input
         type="number"
         required
         formControlName="sdt"
+         placeholder="&#xf095; Số điện thoại"
+        class="fontAwesome"
+        required
         required
       ></ion-input>
-    </ion-item>
+   
 
-    <ion-item>
-      <ion-label position="floating">Địa chỉ</ion-label>
+
       <ion-input
         type="text"
         required
         formControlName="address"
+         placeholder="&#xf2b9; Địa chỉ"
+        class="fontAwesome"
+        required
         required
       ></ion-input>
-    </ion-item>
+   
 
-    <ion-button type="submit"  class="ion-padding" expand="block"
-      >Register</ion-button
-    >
+    <ion-button type="submit" class="ion-padding" expand="block">ĐĂNG KÍ</ion-button>
+    <div class="login">
+      <ion-label>Đã có tài khoản?
+        <ion-router-link href="/login">đăng nhập tại đây</ion-router-link>
+      </ion-label>
+</div>
   </form>
-</ion-content>
+    </div>
+
+</div>
