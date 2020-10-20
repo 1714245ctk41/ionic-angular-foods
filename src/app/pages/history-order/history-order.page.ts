@@ -29,7 +29,7 @@ export class HistoryOrderPage implements OnInit {
       value.docs.forEach(hoadon => {
        if(this.hoadon_total == hoadon.data().totalcart){
         let hoa_don_ter = {
-          id: hoadon.data().id,
+          userid: hoadon.data().userid,
           email: hoadon.data().email,
           password: hoadon.data().password,
           name: hoadon.data().name,
