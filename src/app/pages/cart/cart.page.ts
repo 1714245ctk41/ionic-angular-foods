@@ -95,7 +95,7 @@ toast.present();
       this.storage.delete(cartid);
     
     }
-    // console.log(productupdate)
+    console.log(productupdate)
 
     // alert("da");
     // window.location.href = "/dashboard";

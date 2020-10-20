@@ -1,10 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
 // import { HttpClient } from "@angular/common/http";
 // import { map, tap, switchMap } from "rxjs/operators";
 // import { BehaviorSubject, from, Observable, Subject } from "rxjs";
 import { User } from "../models/user.model";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Storage } from "@ionic/storage";
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { auth } from 'firebase/app';
+import { Router } from "@angular/router";
 
 import {
   LoadingController,
@@ -18,15 +21,31 @@ import {
 export class AuthenticationService {
   // Init with null to filter out the first value in a guard!
   user = {} as User;
-  public user_info = {};
+  public user_info = {};  
+  userData : any;
+  
 
   constructor(
     public storage: Storage,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    private afAuth: AngularFireAuth
-  ) {}
+    public afStore: AngularFirestore,
+    public ngFireAuth: AngularFireAuth,
+    public router: Router,  
+    public ngZone: NgZone 
+  ) {
+     this.ngFireAuth.authState.subscribe(user => {
+        if (user) {
+          this.userData = user;
+          localStorage.setItem('user', JSON.stringify(this.userData));
+          JSON.parse(localStorage.getItem('user'));
+        } else {
+          localStorage.setItem('user', null);
+          JSON.parse(localStorage.getItem('user'));
+        }
+      })
+  }
 
   async setStorage(key: string, value: User) {
     await this.storage.set(key, value);
@@ -46,20 +65,11 @@ export class AuthenticationService {
       (await loader).present();
 
       try {
-        await this.afAuth
+        await this.ngFireAuth
           .signInWithEmailAndPassword(user.email, user.password)
-          .then((data) => {
-            console.log(data.user);
-            this.readStorage("person").then((value) => console.log(value));
-            
-            // this.getString(data.user.uid).then((data) =>
-            //   {console.log(data);}
-            // );
+         
+          this.navCtrl.navigateRoot("/home");
 
-            // console.log(Storage.get({ key }));
-            //redirect to home page
-            this.navCtrl.navigateRoot("/home");
-          });
       } catch (error) {
         this.showToast(error);
       }
@@ -68,6 +78,22 @@ export class AuthenticationService {
       (await loader).dismiss();
     }
   }
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('person'));
+    return (user !== null && user.emailVerified !== false) ? true : false;
+  }
+
+  // SignOut() {
+  //   return this.ngFireAuth.idToken
+
+  //   // auth.signOut().then(() => {
+  //   //   localStorage.removeItem('user');
+  //   //   this.router.navigate(['login']);
+  //   // })
+  // }
+
+
 
   formValidation() {
     if (!this.user.email) {
