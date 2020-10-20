@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
               // like: [],
             };
               this.userService.addUser(userStorage, res.uid, 'user');    
+            
     })
   }
 }

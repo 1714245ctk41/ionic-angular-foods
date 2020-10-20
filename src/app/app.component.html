@@ -1,6 +1,6 @@
 <ion-app>
   <ion-menu menuId="main-menu" content-id="main">
-    <ion-content *ngIf="this.userService.currentUser; else notLogIn">
+    <ion-content *ngIf="this.currentUser; else notLogIn">
       <div class="background">
         <p style="color:white;text-align:center; padding:0;margin:0">Xin chào {{this.userService.currentUser.name}}</p>
         <ion-avatar>

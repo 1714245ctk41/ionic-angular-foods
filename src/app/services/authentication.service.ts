@@ -92,6 +92,7 @@ export class AuthenticationService {
         this.afAuth
           .signOut()
           .then(() => {
+      
             resolve();
           })
           .catch((error) => {

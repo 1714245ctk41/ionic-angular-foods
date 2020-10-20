@@ -12,10 +12,16 @@ import { CrudProductService } from "../services/crud-database";
 })
 export class Tab3Page {
     public userinfo: Array<User> = [];
-  constructor(public storage: AuthenticationService,private userService:CrudProductService) {
+  constructor(public storage: AuthenticationService,
+    private userService:CrudProductService,
+    private nav:NavController) {
 
   }
-  orangeColor:"#ff5100";
+  goToLogin()
+  {
+    this.nav.navigateRoot('/login');
+  }
+    
  
 
 }

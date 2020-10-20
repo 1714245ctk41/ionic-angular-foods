@@ -23,9 +23,11 @@ export class CrudProductService {
       if(!doc.exists){
         await this.firestore.collection(searchvalue).doc(id).set(user);
         this.currentUser=user;
+    
       }
       else{
       this.currentUser=doc.data();
+      
       }
     })
   // return firebase.firestore().collection(searchvalue).doc(id).set(user);

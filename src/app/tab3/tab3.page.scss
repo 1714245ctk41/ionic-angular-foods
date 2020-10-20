@@ -5,9 +5,29 @@ ion-toolbar {
   background-color: orange;
   border: none;
 }
-.title {
+ion-title {
   color: white;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+}
+.user-page {
+  width: 100vw;
+  height: 100vh;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+}
+.header-color {
+    width: 200px;
+    height: 200px;
+    background: #888888;
+    background:
+      radial-gradient(circle 20px at -20% 50%,transparent,transparent 100px,#888888 100px),
+      radial-gradient(circle 20px at 120% 50%,transparent,transparent 100px,#888888 100px);
+    background-size:100px 200px, 100px 200px;
+    background-position:0 0,100% 0;
+    background-repeat:no-repeat;
 }
