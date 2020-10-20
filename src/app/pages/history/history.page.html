@@ -69,7 +69,7 @@
     </ion-thumbnail>
     <ion-label>
       <h3 routerLink="/detail-product/{{product.name}}">{{product.name}}</h3>
-      <p>{{product.price}} vnđ</p>
+      <p>{{this.numberFormat.format(product.price)}}</p>
       <p>{{product.category}}</p>
       <ion-button (click)="deleteCartproduct(product.id)" color="danger">
         <ion-icon name="trash-outline"></ion-icon>

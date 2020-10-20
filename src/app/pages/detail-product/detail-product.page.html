@@ -52,7 +52,7 @@
             
             <div class="product-col" *ngFor="let product of products_relative_1">
               <img src="assets/images/{{product.image}}" alt="" routerLink="/detail-product/{{product.name}}">
-              <ion-fab-button class="button-add-to-cart">
+              <ion-fab-button class="button-add-to-cart" (click)="saveCart(product)">
                 <ion-icon name="add"></ion-icon>
               </ion-fab-button>
             </div>
@@ -63,7 +63,7 @@
       
           <div class="product-col" *ngFor="let product of products_relative_2">
             <img src="assets/images/{{product.image}}" alt="" routerLink="/detail-product/{{product.name}}">
-            <ion-fab-button class="button-add-to-cart">
+            <ion-fab-button class="button-add-to-cart" (click)="saveCart(product)">
               <ion-icon name="add"></ion-icon>
             </ion-fab-button>
           </div>
@@ -74,7 +74,7 @@
       
           <div class="product-col" *ngFor="let product of products_relative_3">
             <img src="assets/images/{{product.image}}" alt="" routerLink="/detail-product/{{product.name}}">
-            <ion-fab-button class="button-add-to-cart">
+            <ion-fab-button class="button-add-to-cart" (click)="saveCart(product)">
               <ion-icon name="add"></ion-icon>
             </ion-fab-button>
           </div>
