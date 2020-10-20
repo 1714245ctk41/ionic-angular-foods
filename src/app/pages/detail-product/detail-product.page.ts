@@ -69,8 +69,10 @@ export class DetailProductPage implements OnInit {
           });
         
           this.products.map(value => {
+            console.log(value)
 if(this.product_detail[0]){
-            if (value.category == this.product_detail[0].category ) {
+            if (value.category == this.product_detail[0].category 
+              && value.productid !== this.product_detail[0].productid) {
               this.products_relative.push(value);
             }
            }
@@ -79,7 +81,7 @@ if(this.product_detail[0]){
           
           this.products_relative_1 = this.products_relative.slice(0, 2)
           this.products_relative_2 = this.products_relative.slice(2, 4)
-          this.products_relative_3 = this.products_relative.slice(5, 7)
+          // this.products_relative_3 = this.products_relative.slice(5, 7)
          })
   }
 

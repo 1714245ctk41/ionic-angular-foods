@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
   //   this.productService.getUser('products').then(ref => {ref.docs.forEach(
   //   value =>{
 
-  //     let productintinitial = {
+  //     let productvalue = {
   //       productid: value.id,
   // price: value.data().price,
   // name: value.data().name,
@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
     
   //    }
   //   )});
-       console.log(this.products);
+      //  console.log(this.products);
       //  this.productService.addProductValue(this.productvalue, 'products');
       
       
@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
        this.products.push(productintinitial)
         })
       })
-    console.log(person );
+    // console.log(person );
     // console.log(this.products );
 
 
@@ -125,7 +125,7 @@ toast.present();
     if(productCart_find){
       ++productCart_find.soluongcart;
     this.storage.update(productCart_find, productCart_find.productid)
-      console.log(this.product)
+      // console.log(this.product)
     }else{
 //  let key = await this.storage.generateKey('productcart');
  let key = 'productcart' + product.productid;
