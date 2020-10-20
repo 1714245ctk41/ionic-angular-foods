@@ -1,10 +1,14 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="orange">
+  <div class="header">
+    <img class="icon" src="../../assets/fast-food.svg" alt="icon">
     <ion-title>Thanh toán</ion-title>
+  </div>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/home" style="color:white">Back</ion-back-button>
+  </ion-buttons>
   </ion-toolbar>
-  
 </ion-header>
-
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="cart-button">
   <ion-fab-button routerLink="/cart" color="warning">

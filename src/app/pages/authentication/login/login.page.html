@@ -1,28 +1,18 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="page-container">
 
-<ion-content>
-  <ion-item>
-    <ion-label position="floating">E-mail</ion-label>
-    <ion-input type="email" required [(ngModel)]="user.email"></ion-input>
-  </ion-item>
+  <div class="login-container">
+    <ion-label class="header">
+      <img class="icon" src="../../../assets/fast-food.svg" alt="icon">
 
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input type="password" required [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-
-  <ion-button (click)="login(user)" class="ion-padding" expand="block"
-    >Login</ion-button
-  >
-  <ion-button
-    class="ion-padding"
-    expand="block"
-    color="light"
-    routerLink="/register"
-    >Register</ion-button
-  >
-</ion-content>
+      FoodD </ion-label>
+    <ion-input type="email" placeholder="&#xf199; Email" class="fontAwesome" required [(ngModel)]="user.email">
+    </ion-input>
+    <ion-input type="password" type="password" placeholder="&#xf023; Mật khẩu" class="fontAwesome" required
+      [(ngModel)]="user.password"></ion-input>
+    <ion-button (click)="login(user)" class="ion-padding" expand="block">ĐĂNG NHẬP</ion-button>
+    <ion-button class="ion-padding" expand="block" (click)="loginWithGoogle()">ĐĂNG NHẬP BẰNG GOOGLE</ion-button>
+    <ion-label class="regis">Chưa có tài khoản?
+      <ion-router-link href="/register">đăng kí tại đây</ion-router-link>
+    </ion-label>
+  </div>
+</div>

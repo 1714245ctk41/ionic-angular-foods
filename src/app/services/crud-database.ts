@@ -15,12 +15,23 @@ export class CrudProductService {
   productListRef: AngularFireList<any>;
   productRef: AngularFireObject<any>;
     user = {} as User;
+    currentUser=null;
 
 
   constructor(private db: AngularFireDatabase) {}
 
   addUser( user, id: string, searchvalue) {
-  return firebase.firestore().collection(searchvalue).doc(id).set(user);
+    this.firestore.collection(searchvalue).doc(id).ref.get().then(async(doc)=>{
+      if(!doc.exists){
+        await this.firestore.collection(searchvalue).doc(id).set(user);
+        this.currentUser=user;
+    
+      }
+      else{
+      this.currentUser=doc.data();
+      
+      }
+    })
   }
   addProductValue(product, searchvalue) {
   return firebase.firestore().collection(searchvalue).add(product);

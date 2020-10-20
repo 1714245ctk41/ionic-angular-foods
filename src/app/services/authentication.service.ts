@@ -8,6 +8,7 @@ import { Storage } from "@ionic/storage";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { auth } from 'firebase/app';
 import { Router } from "@angular/router";
+import {CrudProductService} from './crud-database';
 
 import {
   LoadingController,
@@ -33,7 +34,8 @@ export class AuthenticationService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,  
-    public ngZone: NgZone 
+    public ngZone: NgZone,
+         private userService:CrudProductService,
   ) {
      this.ngFireAuth.authState.subscribe(user => {
         if (user) {
@@ -106,6 +108,27 @@ export class AuthenticationService {
     }
     return true;
   }
+  signInWithGoogle = async() => {
+    const {user} = await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
+     this.navCtrl.navigateRoot("/home");
+    return user;
+  };
+    logoutUser(){
+      return new Promise((resolve, reject) => {
+      if (this.afAuth.currentUser) {
+        this.afAuth
+          .signOut()
+          .then(() => {
+      
+            resolve();
+          })
+          .catch((error) => {
+            reject();
+          });
+      }
+    });
+    }
+
 
   showToast(message: string) {
     this.toastCtrl
