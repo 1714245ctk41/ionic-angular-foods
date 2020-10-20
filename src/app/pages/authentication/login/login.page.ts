@@ -22,8 +22,9 @@ export class LoginPage implements OnInit {
    
     ) {
      this.storage.readUser("person").then(value => {
-       if(value.length > 0){
-         window.location.href = "/home"
+       if(value){
+      
+          //window.location.href = "/home"
        }
      })
     }

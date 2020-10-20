@@ -68,9 +68,13 @@ export class AuthenticationService {
 
       try {
         await this.ngFireAuth
-          .signInWithEmailAndPassword(user.email, user.password)
+          .signInWithEmailAndPassword(user.email, user.password).then((data)=>{
+            this.userService.addUser(user,data.user.uid,'user');
+            this.readStorage("person").then((value) => console.log(value));
+             this.navCtrl.navigateRoot("/home");
+          })
          
-          this.navCtrl.navigateRoot("/home");
+         
 
       } catch (error) {
         this.showToast(error);
@@ -109,14 +113,14 @@ export class AuthenticationService {
     return true;
   }
   signInWithGoogle = async() => {
-    const {user} = await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
+    const {user} = await this.ngFireAuth.signInWithPopup(new auth.GoogleAuthProvider());
      this.navCtrl.navigateRoot("/home");
     return user;
   };
     logoutUser(){
       return new Promise((resolve, reject) => {
-      if (this.afAuth.currentUser) {
-        this.afAuth
+      if (this.ngFireAuth.currentUser) {
+        this.ngFireAuth
           .signOut()
           .then(() => {
       

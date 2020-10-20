@@ -7,7 +7,7 @@ import {
 import { User } from "../models/user.model";
 import * as firebase from 'firebase/app';
 import { FirebaseApp } from "@angular/fire";
-
+import { AngularFirestore } from "@angular/fire/firestore";
 @Injectable({
   providedIn: "root",
 })
@@ -18,7 +18,7 @@ export class CrudProductService {
     currentUser=null;
 
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase,private firestore:AngularFirestore) {}
 
   addUser( user, id: string, searchvalue) {
     this.firestore.collection(searchvalue).doc(id).ref.get().then(async(doc)=>{

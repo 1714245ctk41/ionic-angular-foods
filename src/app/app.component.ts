@@ -12,6 +12,7 @@ import { NavController } from "@ionic/angular";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -20,7 +21,9 @@ export class AppComponent {
      private navCtrl:NavController,
      private userService:CrudProductService,
   ) {
+    
     this.initializeApp();
+    
   }
 
   initializeApp() {
