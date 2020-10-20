@@ -33,7 +33,7 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      id: [""],
+      userid: [""],
       email: [""],
       password: [""],
       name: [""],
@@ -60,7 +60,7 @@ export class RegisterPage implements OnInit {
           .createUserWithEmailAndPassword(this.registerForm.get('email').value, this.registerForm.get('password').value)
           .then((data) => {
             let userStorage = {
-              id: data.user.uid,
+              userid: data.user.uid,
               email: this.registerForm.get('email').value,
               password: this.registerForm.get('password').value,
               name: this.registerForm.get('name').value,
@@ -69,7 +69,7 @@ export class RegisterPage implements OnInit {
               totalcart: "0"
               // like: [],
             };
-         
+         console.log(data.user.uid)
 
           
             this.userService.addUser(userStorage, data.user.uid, 'user');

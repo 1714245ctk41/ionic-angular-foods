@@ -29,7 +29,7 @@
  <p> Tổng giá: </p><ion-title><b style="display: block;">{{this.numberFormat.format(total)}} </b></ion-title> 
 </ion-toolbar>
 
-<ion-item *ngFor="let product of productCart" id="{{product.id}}"> 
+<ion-item *ngFor="let product of productCart" id="{{product.productid}}"> 
   <ion-thumbnail slot="start">
     <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
   </ion-thumbnail>
@@ -47,16 +47,16 @@
          
           <ion-item>
             <ion-label position="stacked">Số lượng</ion-label>
-            <ion-input   [(ngModel)]="cart_slitem"  type="number" disabled>{{product.soluongcart}}</ion-input>
+            <ion-input    [(ngModel)]="cart_slitem"  type="number" disabled>{{product.soluongcart}}</ion-input>
           </ion-item>
 
-          <ion-button (click)="tangsoluong(product.id)" color="secondary">
+          <ion-button (click)="tangsoluong(product.productid)" color="secondary">
             <ion-icon name="add-outline" ></ion-icon>
           
           
           </ion-button>
           
-          <ion-button (click)="deleteCartproduct(product.id)" color="danger">
+          <ion-button (click)="deleteCartproduct(product.productid)" color="danger">
             <ion-icon name="trash-outline"></ion-icon>
           
           

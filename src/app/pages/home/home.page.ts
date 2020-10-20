@@ -23,33 +23,54 @@ export class HomePage implements OnInit {
     public toastController: ToastController
   ) {  
 
+   
     
     
-    this.productService.getUser('products').then(ref => {ref.docs.forEach(
-    value =>{
+  //   this.productService.getUser('products').then(ref => {ref.docs.forEach(
+  //   value =>{
 
-      let productintinitial = {
-        id: value.id,
-  price: value.data().price,
-  name: value.data().name,
-  tutorial: value.data().tutorial,
-  category: value.data().category,
-  image: value.data().image,
-  soluongcart: 1
-      }
+  //     let productintinitial = {
+  //       productid: value.id,
+  // price: value.data().price,
+  // name: value.data().name,
+  // tutorial: value.data().tutorial,
+  // category: value.data().category,
+  // image: value.data().image,
+  // soluongcart: 1
+  //     }
 
-     this.products.push(productintinitial)
-    //  console.log(productintinitial)
-     }
-    )});
-      //  console.log(this.products);
+  //    this.products.push(productintinitial)
+  //   //  console.log(productintinitial)
+    
+  //    }
+  //   )});
+       console.log(this.products);
       //  this.productService.addProductValue(this.productvalue, 'products');
       
       
     }
      async ngOnInit() {
       let person =  await this.storage.read('person')
+
+
+      this.productService.getUser('products').then(value => {
+        value.forEach(item => {
+                let productintinitial = {
+          productid: item.id,
+    price: item.data().price,
+    name: item.data().name,
+    tutorial: item.data().tutorial,
+    category: item.data().category,
+    image: item.data().image,
+    soluongcart: 1
+        }
+  
+       this.products.push(productintinitial)
+        })
+      })
     console.log(person );
+    // console.log(this.products );
+
 
   }
    
@@ -67,10 +88,10 @@ export class HomePage implements OnInit {
 
     }else{
 //  let key = await this.storage.generateKey('proHistory');
- let key = 'proHistory' + product.id;
+ let key = 'proHistory' + product.productid;
 
     let productstorage = {
-      id: key,
+      productid: key,
       price: product.price,
   name: product.name,
   tutorial: product.tutorial,
@@ -102,14 +123,14 @@ toast.present();
       return element.name == product.name
     })
     if(productCart_find){
-      productCart_find.soluongcart++;
-    this.storage.update(productCart_find)
-
+      ++productCart_find.soluongcart;
+    this.storage.update(productCart_find, productCart_find.productid)
+      console.log(this.product)
     }else{
 //  let key = await this.storage.generateKey('productcart');
- let key = 'productcart' + product.id;
+ let key = 'productcart' + product.productid;
     let productstorage = {
-      id: key,
+      productid: key,
       price: product.price,
   name: product.name,
   tutorial: product.tutorial,

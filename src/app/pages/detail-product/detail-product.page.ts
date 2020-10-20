@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CrudProductService} from '../../services/crud-database';
 import {Product} from '../../models/product.model'; 
 import { ActivatedRoute } from "@angular/router";
-import { CrudStorageService } from 'src/app/services/crud-storage.service';
+import { CrudStorageService } from '../../services/crud-storage.service';
 import { ToastController } from '@ionic/angular';
 
 
@@ -52,7 +52,7 @@ export class DetailProductPage implements OnInit {
          this.productService.getUser('products').then(ref => {ref.docs.forEach(value =>
           { 
             let productintinitial = {
-            id: value.id,
+            productid: value.id,
             price: value.data().price,
             name: value.data().name,
             tutorial: value.data().tutorial,
@@ -96,13 +96,13 @@ toast.present();
     })
     if(productCart_find){
       productCart_find.soluongcart++;
-    this.storage.update(productCart_find)
-
+    this.storage.update( productCart_find, productCart_find.productid)
+      // console.log(productCart_find)
     }else{
 //  let key = await this.storage.generateKey('productcart');
- let key = 'productcart' + product.id;
+ let key = 'productcart' + product.productid;
     let productstorage = {
-      id: key,
+      productid: key,
       price: product.price,
   name: product.name,
   tutorial: product.tutorial,

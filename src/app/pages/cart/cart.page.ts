@@ -41,7 +41,7 @@ export class CartPage implements OnInit {
         return a + b.soluongcart*b.price;
       }, 0));
     //  this.total_string =  this.numberFormat.format(this.total)
-    // console.log(this.productCart)
+    console.log(this.productCart)
 
   }
 
@@ -69,9 +69,9 @@ toast.present();
 
  
   tangsoluong(productid){
-    let productupdate = this.productCart.find(element => element.id == productid)
+    let productupdate = this.productCart.find(element => element.productid == productid)
     productupdate.soluongcart++;
-    this.storage.update(productupdate)
+    this.storage.update(productupdate, productupdate.productid)
     this.total =  this.productCart.reduce(function(a, b) {
         return a + b.soluongcart*b.price;
       }, 0);
@@ -80,17 +80,18 @@ toast.present();
 
 
    deleteCartproduct(cartid) {
-      let productupdate = this.productCart.find(element => element.id == cartid)
+      let productupdate = this.productCart.find(element => element.productid == cartid)
     productupdate.soluongcart--;
-    this.storage.update(productupdate)
+    this.storage.update(productupdate, productupdate.productid)
     this.total =  this.productCart.reduce(function(a, b) {
         return a + b.soluongcart*b.price;
       }, 0);
     if(productupdate.soluongcart < 1){
-      document.getElementById(productupdate.id).style.display= "none"
+      document.getElementById(productupdate.productid).style.display= "none"
       this.storage.delete(cartid);
     
     }
+    console.log(productupdate)
 
     // alert("da");
     // window.location.href = "/dashboard";

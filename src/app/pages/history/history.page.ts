@@ -36,9 +36,9 @@ export class HistoryPage implements OnInit {
     // console.log(this.personCurrent.id)
     this.crudProductService.getUser('hoa_don').then(value => {
       value.docs.forEach(hoadon => {
-       if(this.personCurrent.id == hoadon.data().id){
+       if(this.personCurrent.userid == hoadon.data().userid){
         let hoa_don_ter = {
-          id: hoadon.data().id,
+          userid: hoadon.data().userid,
           email: hoadon.data().email,
           password: hoadon.data().password,
           name: hoadon.data().name,

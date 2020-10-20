@@ -39,7 +39,7 @@
     <ion-title>Sản phẩm đã mua</ion-title>
   </ion-toolbar>
 
-<ion-item *ngFor="let product of product_buyed" id={{product.id}}>
+<ion-item *ngFor="let product of product_buyed" id={{product.productid}}>
   <ion-thumbnail slot="start">
     <img src="assets/images/{{product.image}}" routerLink="/detail-product/{{product.name}}">
   </ion-thumbnail>

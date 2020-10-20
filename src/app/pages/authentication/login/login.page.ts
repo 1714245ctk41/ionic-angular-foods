@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  async login(user) {
+   login(user) {
    
     // user.email = "1714245ctk41@gmail.com";
     // user.password = "1714245ctk41";
@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
         if(value.data().email == user.email){
         
           this.userSearch ={
-             id: value.data().id,
+             userid: value.data().userid,
   email: value.data().email,
   password: value.data().password,
   name: value.data().name,
@@ -44,6 +44,7 @@ export class LoginPage implements OnInit {
  } ;
           
           if(this.storage.readUser('person')){
+           
             this.storage.delete('person');
             this.storage.createUser('person', this.userSearch);
           }
