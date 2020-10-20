@@ -20,14 +20,20 @@
       margin-top: 20px;
       font-size: 15px;
     }
+
     ion-input {
       margin-top: 30px;
       width: 300px;
       border: none;
       border-radius: 10px;
       background-color: white;
-      padding: 7px;
+      color: #333333 !important;
+      // padding: 7px;
       outline: none;
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+      font-size: 1.3em;
+      word-spacing: 1px;
     }
     ion-button {
       margin-top: 20px;

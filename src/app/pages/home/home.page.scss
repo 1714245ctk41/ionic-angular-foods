@@ -11,14 +11,18 @@ ion-fab-button.button-add-to-cart {
   align-content: space-between;
   /* fixed height, cao hơn độ cao của item cao nhất */
   height: 2600px;
+  padding: 10px 10px 10px 0;
 }
-.product-col:nth-child(6),
-.product-col:nth-child(7),
-.product-col:nth-child(8),
-.product-col:nth-child(9),
-.product-col:nth-child(10) {
-  margin-left: 0px;
-}
+// .product-col:nth-child(9),
+// .product-col:nth-child(10),
+// .product-col:nth-child(11),
+// .product-col:nth-child(12),
+// .product-col:nth-child(13),
+// .product-col:nth-child(14),
+// .product-col:nth-child(15),
+// .product-col:nth-child(16) {
+//   margin-left: 0px;
+// }
 .product-col {
   width: 45%;
   margin: 3%;

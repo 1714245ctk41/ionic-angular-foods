@@ -58,7 +58,7 @@ export class AuthenticationService {
   async removeStorage(key: string) {
     await this.storage.remove(key);
   }
-  async login(user: User) {
+   async login(user: User) {
     if (this.formValidation()) {
       //show loader
       let loader = this.loadingCtrl.create({
