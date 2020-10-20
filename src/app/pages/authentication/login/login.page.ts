@@ -76,7 +76,7 @@ export class LoginPage implements OnInit {
               sdt: res.phoneNumber,   
               // like: [],
             };
-              this.userService.addUser(userStorage, res.uid, 'user');    
+              this.cruddatabase.addUser(userStorage, res.uid, 'user');    
             
     })
   }
