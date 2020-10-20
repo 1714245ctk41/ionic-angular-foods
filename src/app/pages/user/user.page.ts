@@ -14,5 +14,8 @@ export class UserPage implements OnInit {
 
   ngOnInit() {
   }
+  goToLogin(){
+    this.nav.navigateRoot('/login');
+  }
 
 }
