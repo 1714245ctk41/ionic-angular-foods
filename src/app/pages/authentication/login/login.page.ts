@@ -67,4 +67,17 @@ export class LoginPage implements OnInit {
     // await this.authentication.getUser_info(user);
    
   }
+   async loginWithGoogle() {
+        await this.authentication.signInWithGoogle().then((res)=>{
+           let userStorage = {
+              id: res.uid,
+              email: res.email,   
+              name: res.displayName,
+              sdt: res.phoneNumber,   
+              // like: [],
+            };
+              this.userService.addUser(userStorage, res.uid, 'user');    
+            
+    })
+  }
 }
