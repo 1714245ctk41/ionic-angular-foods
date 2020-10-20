@@ -109,14 +109,14 @@ export class AuthenticationService {
     return true;
   }
   signInWithGoogle = async() => {
-    const {user} = await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
+    const {user} = await this.ngFireAuth.signInWithPopup(new auth.GoogleAuthProvider());
      this.navCtrl.navigateRoot("/home");
     return user;
   };
     logoutUser(){
       return new Promise((resolve, reject) => {
-      if (this.afAuth.currentUser) {
-        this.afAuth
+      if (this.ngFireAuth.currentUser) {
+        this.ngFireAuth
           .signOut()
           .then(() => {
       
