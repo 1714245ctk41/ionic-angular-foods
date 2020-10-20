@@ -58,7 +58,7 @@ export class AuthenticationService {
   async removeStorage(key: string) {
     await this.storage.remove(key);
   }
-  async login(user: User) {
+   async login(user: User) {
     if (this.formValidation()) {
       //show loader
       let loader = this.loadingCtrl.create({
@@ -68,9 +68,13 @@ export class AuthenticationService {
 
       try {
         await this.ngFireAuth
-          .signInWithEmailAndPassword(user.email, user.password)
+          .signInWithEmailAndPassword(user.email, user.password).then((data)=>{
+            this.userService.addUser(user,data.user.uid,'user');
+            this.readStorage("person").then((value) => console.log(value));
+             this.navCtrl.navigateRoot("/home");
+          })
          
-          this.navCtrl.navigateRoot("/home");
+         
 
       } catch (error) {
         this.showToast(error);
