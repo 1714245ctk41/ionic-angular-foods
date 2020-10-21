@@ -17,8 +17,4 @@ export class UserPage implements OnInit {
   goToLogin(){
     this.nav.navigateRoot('/login');
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> b8347971d62cb9cfd87e2958ed82cfd8fe877a9b
 }

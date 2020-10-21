@@ -17,11 +17,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-<<<<<<< HEAD
-        private authService:AuthenticationService,
-=======
        private authService:AuthenticationService,
->>>>>>> b8347971d62cb9cfd87e2958ed82cfd8fe877a9b
      private navCtrl:NavController,
      private userService:CrudProductService,
   ) {
@@ -36,11 +32,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-<<<<<<< HEAD
-    logOut(){
-=======
      logOut(){
->>>>>>> b8347971d62cb9cfd87e2958ed82cfd8fe877a9b
      this.userService.currentUser=null;
     this.authService.logoutUser();
   }

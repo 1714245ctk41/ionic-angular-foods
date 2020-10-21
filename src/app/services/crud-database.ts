@@ -8,10 +8,6 @@ import { User } from "../models/user.model";
 import * as firebase from 'firebase/app';
 import { FirebaseApp } from "@angular/fire";
 import { AngularFirestore } from "@angular/fire/firestore";
-<<<<<<< HEAD
-=======
-
->>>>>>> b8347971d62cb9cfd87e2958ed82cfd8fe877a9b
 @Injectable({
   providedIn: "root",
 })
