@@ -14,6 +14,8 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "../environments/environment";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { IonicStorageModule } from "@ionic/storage";
+import { User } from "./models/user.model";
+import {CrudStorageService} from "./services/crud-storage.service"
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,5 +37,13 @@ import { IonicStorageModule } from "@ionic/storage";
   bootstrap: [AppComponent],
 })
 export class AppModule {
-
+  public userShowInfo: User
+  constructor(private crudStorageService : CrudStorageService){
+    this.crudStorageService.readUser('person').then(value => {
+      
+      this.userShowInfo = value[0];
+      console.log(this.userShowInfo)
+    })
+    // console.log(this.userShowInfo)
+  }
 }
