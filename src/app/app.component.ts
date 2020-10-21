@@ -15,9 +15,9 @@ import {CrudStorageService} from "./services/crud-storage.service";
 export class AppComponent implements OnInit{
    currentUser= {};
   async ngOnInit(){
-     (await this.storage.readUser('person')).forEach(value=>{
-        this.currentUser=value
-      });
+    //  (await this.storage.readUser('person')).forEach(value=>{
+    //     this.currentUser=value
+    //   });
   }
   constructor(
     private platform: Platform,
