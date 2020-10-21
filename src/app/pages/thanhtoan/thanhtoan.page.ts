@@ -90,9 +90,7 @@ export class ThanhtoanPage implements OnInit {
     
 
       // "hoa_don", this.thanhtoan.id, "products"
-      this.crudProductService.updateUser(this.thanhtoan, 'user').then(value => {
-        console.log(value)
-      })
+      this.crudProductService.updateUser(this.thanhtoan, 'user');
       this.storage.updateUser(this.thanhtoan, 'person');
       
       this.thanhtoan['totalcart'] = '0';
