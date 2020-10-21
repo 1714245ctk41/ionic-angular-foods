@@ -69,7 +69,7 @@ export class DetailProductPage implements OnInit {
           });
         
           this.products.map(value => {
-            console.log(value)
+            // console.log(value)
 if(this.product_detail[0]){
             if (value.category == this.product_detail[0].category 
               && value.productid !== this.product_detail[0].productid) {

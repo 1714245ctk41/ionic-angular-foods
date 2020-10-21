@@ -12,14 +12,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="this.userService.currentUser; else notLogIn">
+<ion-content *ngIf="this.userShowInfo; else notLogIn">
   <img class="user-icon1" src="../../assets/fast-food.svg" alt="icon">
   <div class="user-info">
     <ion-label>Thông tin người dùng</ion-label>
-    <p>Email: {{this.userService.currentUser.email}}</p>
-    <p>Tên: {{this.userService.currentUser.name}}</p>
-    <p>Số điện thoại: {{this.userService.currentUser.sdt}}</p>
-    <p>Địa chỉ: {{this.userService.currentUser.address}}</p>
+    <p>Email: {{this.userShowInfo.email}}</p>
+    <p>Tên: {{this.userShowInfo.name}}</p>
+    <p>Số điện thoại: {{this.userShowInfo.sdt}}</p>
+    <p>Địa chỉ: {{this.userShowInfo.address}}</p>
   </div>
 </ion-content>
 <ng-template #notLogIn>

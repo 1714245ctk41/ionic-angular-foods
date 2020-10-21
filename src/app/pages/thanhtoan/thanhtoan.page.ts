@@ -59,7 +59,20 @@ export class ThanhtoanPage implements OnInit {
   toast.present();
 
 
-    }else{
+    }else if(this.thanhtoan.sdt== null){
+      const toast = await this.toastController.create({
+        message: 'Nhập số điện thoại.',
+        duration: 2000
+      });
+  toast.present();
+    }else if(this.thanhtoan.address == "Nhập địa chỉ" || this.thanhtoan.address == ''){
+      const toast = await this.toastController.create({
+        message: 'Nhập địa chỉ.',
+        duration: 2000
+      });
+  toast.present();
+    }
+    else{
       const toast = await this.toastController.create({
         message: 'Đã đặt hàng thành công.',
         duration: 2000
@@ -77,8 +90,9 @@ export class ThanhtoanPage implements OnInit {
     
 
       // "hoa_don", this.thanhtoan.id, "products"
+      this.crudProductService.updateUser(this.thanhtoan, 'user');
       this.storage.updateUser(this.thanhtoan, 'person');
-  
+      
       this.thanhtoan['totalcart'] = '0';
   
       this.storage.deleteAllCart('productcart');

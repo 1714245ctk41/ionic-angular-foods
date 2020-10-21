@@ -15,6 +15,7 @@ import { environment } from "../environments/environment";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { IonicStorageModule } from "@ionic/storage";
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

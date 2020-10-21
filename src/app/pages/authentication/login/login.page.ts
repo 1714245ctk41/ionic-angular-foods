@@ -13,7 +13,7 @@ import {Route, Router} from "@angular/router"
 export class LoginPage implements OnInit {
   user = {} as User;
   userSearch = {} as User ;
-  userStorage: any
+  // userStorage: any
   constructor(
     private authentication: AuthenticationService,
     public storage: CrudStorageService,
@@ -62,6 +62,8 @@ export class LoginPage implements OnInit {
             this.storage.delete('person');
             this.storage.createUser('person', this.userSearch);
           }
+         window.location.href = "/home"
+
         }
       })
     })
@@ -71,14 +73,25 @@ export class LoginPage implements OnInit {
    async loginWithGoogle() {
         await this.authentication.signInWithGoogle().then((res)=>{
            let userStorage = {
-              id: res.uid,
+              userid: res.uid,
               email: res.email,   
               name: res.displayName,
-              sdt: res.phoneNumber,   
+              sdt: parseInt(res.phoneNumber),   
+              totalcart: "0",
+              address: "Nhập địa chỉ",
+              password: "google email"
+
               // like: [],
             };
-              this.cruddatabase.addUser(userStorage, res.uid, 'user');    
-            
+              this.cruddatabase.addUser(userStorage, res.uid, 'user');   
+               
+
+              if(this.storage.readUser('person')){
+           
+                this.storage.delete('person');
+                this.storage.createUser('person', userStorage);
+              }
+         window.location.href = "/home";
     })
   }
 }
