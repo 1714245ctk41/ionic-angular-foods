@@ -49,4 +49,8 @@ export class CrudProductService {
     return firebase.firestore().collection(searchvalue).get();
   }
 
+  updateUser(user:User, searchUpdate) {
+    return firebase.firestore().collection(searchUpdate).doc(user.userid).set(user, {merge: true});
+  }
+
 }
