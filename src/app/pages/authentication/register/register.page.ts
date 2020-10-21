@@ -78,7 +78,9 @@ export class RegisterPage implements OnInit {
             
 
             // redirect to home page
-            this.navCtrl.navigateRoot("/home");
+            // this.navCtrl.navigateRoot("/home");
+         window.location.href = "/home"
+
           });
       } catch (error) {
         this.showToast(error);

@@ -61,6 +61,8 @@ export class LoginPage implements OnInit {
             this.storage.delete('person');
             this.storage.createUser('person', this.userSearch);
           }
+         window.location.href = "/home"
+
         }
       })
     })
@@ -88,6 +90,8 @@ export class LoginPage implements OnInit {
                 this.storage.delete('person');
                 this.storage.createUser('person', userStorage);
               }
+         window.location.href = "/home"
+
             
     })
   }
