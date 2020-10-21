@@ -32,7 +32,7 @@
   <form (ngSubmit)="logForm()">
 <ion-item>
   <ion-label position="stacked">Tên</ion-label>
-  <ion-input [(ngModel)]="thanhtoan.name" name="name"></ion-input>
+  <ion-input [(ngModel)]="thanhtoan.name" name="name" required></ion-input>
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Email</ion-label>
@@ -40,11 +40,11 @@
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Địa chỉ</ion-label>
-  <ion-input [(ngModel)]="thanhtoan.address" name="address"></ion-input>
+  <ion-input [(ngModel)]="thanhtoan.address" name="address" required></ion-input>
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Số điện thoại</ion-label>
-  <ion-input [(ngModel)]="thanhtoan.sdt" name="sdt"></ion-input>
+  <ion-input [(ngModel)]="thanhtoan.sdt" name="sdt" required></ion-input>
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Tổng số tiền</ion-label>
