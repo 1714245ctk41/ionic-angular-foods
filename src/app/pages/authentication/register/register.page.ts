@@ -69,8 +69,8 @@ export class RegisterPage implements OnInit {
               name: this.registerForm.get('name').value,
               sdt: this.registerForm.get('sdt').value,
               address: this.registerForm.get('address').value,
-              totalcart: "0"
-              // like: [],
+              totalcart: "0",
+              like: [],
             };
               this.authentication.setStorage("person", userStorage);
                this.userService.addUser(userStorage, data.user.uid, 'user');

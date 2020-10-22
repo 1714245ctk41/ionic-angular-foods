@@ -6,5 +6,5 @@ export interface User {
   sdt: number;
   address: string;
   totalcart: string
-  // like: Array<object>;
+  like: Array<object>;
 }

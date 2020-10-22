@@ -61,7 +61,8 @@ export class LoginPage implements OnInit {
             name: value.data().name,
             sdt: value.data().sdt,
             address: value.data().address,
-            totalcart: value.data().totalcart,         
+            totalcart: value.data().totalcart,
+            like:value.data().like,         
             } ;
            this.authentication.setStorage("person", this.userSearch);
 
@@ -82,9 +83,7 @@ export class LoginPage implements OnInit {
               sdt: 123,
               address: "address not set",
               totalcart:"",
-            
-                 
-              // like: [],
+              like: [],
             };
             this.cruddatabase.addUser(userStorage, res.uid, 'user'); 
                 this.authentication.setStorage("person",userStorage );

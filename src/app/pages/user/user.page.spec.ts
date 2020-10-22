@@ -12,7 +12,6 @@ describe('UserPage', () => {
       declarations: [ UserPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
-
     fixture = TestBed.createComponent(UserPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

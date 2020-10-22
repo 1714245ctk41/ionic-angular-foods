@@ -27,11 +27,14 @@ export class ThanhtoanPage implements OnInit {
 
   ) { 
     
-
+this.storage.read('productcart').then(value => {
+        console.log(value)
+      });
   }
 
   async ngOnInit() {
     this.productCart = await this.storage.read('productcart');
+    console.log(this.productCart);
   
      
 
@@ -65,7 +68,8 @@ export class ThanhtoanPage implements OnInit {
         duration: 2000
       });
   toast.present();
-    }else if(this.thanhtoan.address == "Nhập địa chỉ" || this.thanhtoan.address == ''){
+    }else if(this.thanhtoan.address == "Nhập địa chỉ"
+     || this.thanhtoan.address == ''||this.thanhtoan.address==undefined ){
       const toast = await this.toastController.create({
         message: 'Nhập địa chỉ.',
         duration: 2000
@@ -91,10 +95,10 @@ export class ThanhtoanPage implements OnInit {
 
       // "hoa_don", this.thanhtoan.id, "products"
       this.crudProductService.updateUser(this.thanhtoan, 'user');
+      this.thanhtoan['totalcart'] = '0';
+
       this.storage.updateUser(this.thanhtoan, 'person');
       
-      this.thanhtoan['totalcart'] = '0';
-  
       this.storage.deleteAllCart('productcart');
     }
    

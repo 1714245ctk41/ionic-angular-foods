@@ -59,10 +59,8 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
   },
-  {
-    path: 'user',
-    loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
-  },
+  
+
 
 
 ];

@@ -16,17 +16,12 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item routerLink="/user">
+          <ion-item routerLink="/user" [state]="{userCredential:this.userShowInfo}">
             <ion-icon name="person" slot="start"></ion-icon>
             <ion-label>Xem thông tin cá nhân</ion-label>
           </ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-item routerLink="/favorite">
-            <ion-icon name="heart" slot="start"></ion-icon>
-            <ion-label>Sản phẩm yêu thích</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
+       
         <ion-menu-toggle>
           <ion-item routerLink="/cart">
             <ion-icon name="cart" slot="start"></ion-icon>
