@@ -1,8 +1,9 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import {UserResolveService} from './services/user-resolve.service';
 // import { User } from "./models/user.model";
 // import { AngularFireAuth } from "@angular/fire/auth";
-
+import {HomePage} from './pages/home/home.page';
 const routes: Routes = [
   {
     path: "tabs",
@@ -43,7 +44,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    resolve:{currentUser:UserResolveService}
   },
   {
     path: 'thanhtoan',
@@ -52,7 +54,8 @@ const routes: Routes = [
   {
     path: 'history-order/:ordertotal',
     loadChildren: () => import('./pages/history-order/history-order.module').then( m => m.HistoryOrderPageModule)
-  },  {
+  },
+  {
     path: 'user',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
   },

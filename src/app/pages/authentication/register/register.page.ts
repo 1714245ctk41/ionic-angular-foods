@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { CrudStorageService } from '../../../services/crud-storage.service';
 import {
   LoadingController,
   NavController,
@@ -29,6 +30,7 @@ export class RegisterPage implements OnInit {
     private authentication: AuthenticationService,
     private userService: CrudProductService,
     public fb: FormBuilder, 
+    public storage: CrudStorageService,
   ) {}
 
   ngOnInit() {
@@ -59,7 +61,8 @@ export class RegisterPage implements OnInit {
         await this.afAuth
           .createUserWithEmailAndPassword(this.registerForm.get('email').value, this.registerForm.get('password').value)
           .then((data) => {
-            let userStorage = {
+              
+             let userStorage = {
               userid: data.user.uid,
               email: this.registerForm.get('email').value,
               password: this.registerForm.get('password').value,
@@ -69,19 +72,13 @@ export class RegisterPage implements OnInit {
               totalcart: "0"
               // like: [],
             };
-         console.log(data.user.uid)
-
-          
-            this.userService.addUser(userStorage, data.user.uid, 'user');
-            
-            this.authentication.setStorage("person", userStorage);
-            
-
-            // redirect to home page
-            // this.navCtrl.navigateRoot("/home");
-         window.location.href = "/home"
-
+              this.authentication.setStorage("person", userStorage);
+               this.userService.addUser(userStorage, data.user.uid, 'user');
           });
+          setTimeout(()=>{
+            this.navCtrl.navigateRoot('home');
+          },0);
+         
       } catch (error) {
         this.showToast(error);
       }
@@ -113,6 +110,9 @@ export class RegisterPage implements OnInit {
       return false;
     }
     return true;
+  }
+  goToLogin(){
+    this.navCtrl.navigateBack("/login");
   }
 
   showToast(message: string) {

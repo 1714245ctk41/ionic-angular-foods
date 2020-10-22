@@ -3,8 +3,13 @@ import { CrudProductService } from '../../../services/crud-database';
 import { CrudStorageService } from '../../../services/crud-storage.service';
 import { User } from "../../../models/user.model";
 import { AuthenticationService } from "../../../services/authentication.service";
-import {Route, Router} from "@angular/router"
+import {Route, Router} from "@angular/router";
+import {AppComponent} from '../../../app.component';
+import {
 
+  NavController,
+
+} from "@ionic/angular";
 @Component({
   selector: "app-login",
   templateUrl: "./login.page.html",
@@ -13,12 +18,14 @@ import {Route, Router} from "@angular/router"
 export class LoginPage implements OnInit {
   user = {} as User;
   userSearch = {} as User ;
-  // userStorage: any
+  userStorage: any
   constructor(
     private authentication: AuthenticationService,
     public storage: CrudStorageService,
     private cruddatabase: CrudProductService,
-    private router: Router
+    private router: Router,
+    private nav:NavController,
+  
    
     ) {
      this.storage.readUser("person").then(value => {
@@ -33,7 +40,7 @@ export class LoginPage implements OnInit {
     
   }
 
-   login(user) {
+  login(user) {
    
     // user.email = "1714245ctk41@gmail.com";
     // user.password = "1714245ctk41";
@@ -48,25 +55,20 @@ export class LoginPage implements OnInit {
         if(value.data().email == user.email){
         
           this.userSearch ={
-             userid: value.data().userid,
-  email: value.data().email,
-  password: value.data().password,
-  name: value.data().name,
-  sdt: value.data().sdt,
-  address: value.data().address,
-  totalcart: value.data().totalcart,         
- } ;
-          
-          if(this.storage.readUser('person')){
-           
-            this.storage.delete('person');
-            this.storage.createUser('person', this.userSearch);
-          }
-         window.location.href = "/home"
+            userid: value.data().userid,
+            email: value.data().email,
+            password: value.data().password,
+            name: value.data().name,
+            sdt: value.data().sdt,
+            address: value.data().address,
+            totalcart: value.data().totalcart,         
+            } ;
+           this.authentication.setStorage("person", this.userSearch);
 
         }
       })
     })
+      
     // await this.authentication.getUser_info(user);
    
   }
@@ -74,24 +76,24 @@ export class LoginPage implements OnInit {
         await this.authentication.signInWithGoogle().then((res)=>{
            let userStorage = {
               userid: res.uid,
-              email: res.email,   
+              email: res.email,
+              password:"",   
               name: res.displayName,
-              sdt: parseInt(res.phoneNumber),   
-              totalcart: "0",
-              address: "Nhập địa chỉ",
-              password: "google email"
-
+              sdt: 123,
+              address: "address not set",
+              totalcart:"",
+            
+                 
               // like: [],
             };
-              this.cruddatabase.addUser(userStorage, res.uid, 'user');   
-               
-
-              if(this.storage.readUser('person')){
-           
-                this.storage.delete('person');
-                this.storage.createUser('person', userStorage);
-              }
-         window.location.href = "/home";
+            this.cruddatabase.addUser(userStorage, res.uid, 'user'); 
+                this.authentication.setStorage("person",userStorage );
+                this.nav.navigateRoot('home');
+                 
+            
     })
+  }
+  goToRegister(){
+    this.nav.navigateForward('register');
   }
 }

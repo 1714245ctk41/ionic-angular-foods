@@ -9,7 +9,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { auth } from 'firebase/app';
 import { Router } from "@angular/router";
 import {CrudProductService} from './crud-database';
-
+import {CrudStorageService} from './crud-storage.service';
 import {
   LoadingController,
   NavController,
@@ -35,7 +35,8 @@ export class AuthenticationService {
     public ngFireAuth: AngularFireAuth,
     public router: Router,  
     public ngZone: NgZone,
-         private userService:CrudProductService,
+    private userService:CrudProductService,
+    private storageService:CrudStorageService,
   ) {
      this.ngFireAuth.authState.subscribe(user => {
         if (user) {
@@ -73,9 +74,6 @@ export class AuthenticationService {
             this.readStorage("person").then((value) => console.log(value));
              this.navCtrl.navigateRoot("/home");
           })
-         
-         
-
       } catch (error) {
         this.showToast(error);
       }
@@ -89,7 +87,13 @@ export class AuthenticationService {
     const user = JSON.parse(localStorage.getItem('person'));
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
+  async getCurrentUser(){
+    let currentUser= null;
+     let p = await this.storageService.readUser('person');
 
+     currentUser= p[0];
+    return currentUser;
+  }
   // SignOut() {
   //   return this.ngFireAuth.idToken
 
@@ -114,7 +118,6 @@ export class AuthenticationService {
   }
   signInWithGoogle = async() => {
     const {user} = await this.ngFireAuth.signInWithPopup(new auth.GoogleAuthProvider());
-     this.navCtrl.navigateRoot("/home");
     return user;
   };
     logoutUser(){

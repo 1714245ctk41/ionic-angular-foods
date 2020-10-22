@@ -5,7 +5,8 @@ import { CrudProductService } from "../../services/crud-database";
 import {Product} from "../../models/product.model";
 import { CrudStorageService } from '../../services/crud-storage.service';
 import { ToastController } from '@ionic/angular';
-
+import {AppComponent} from '../../app.component';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -20,9 +21,12 @@ export class HomePage implements OnInit {
     private authentication: AuthenticationService, 
     private productService: CrudProductService, 
     public storage: CrudStorageService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private app:AppComponent,
+    private route:ActivatedRoute,
   ) {  
-
+   
+      
    
     
     
@@ -50,9 +54,11 @@ export class HomePage implements OnInit {
       
     }
      async ngOnInit() {
-      let person =  await this.storage.read('person')
-
-
+    
+       this.app.userShowInfo=this.route.snapshot.data.currentUser;
+       console.log(this.route.snapshot.data);
+       
+      let person =  await this.storage.read('person');
       this.productService.getUser('products').then(value => {
         value.forEach(item => {
                 let productintinitial = {
