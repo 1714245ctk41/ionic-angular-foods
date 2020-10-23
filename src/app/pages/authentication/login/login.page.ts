@@ -35,12 +35,18 @@ export class LoginPage implements OnInit {
       //     window.location.href = "/home"
 
       // }
-     this.storage.readUser("person").then(value => {
-       if(value){
+      this.userResolve.resolve().then(value => {
+        if(value !== undefined){
+          window.location.href = "/home"
+
+        }
+      })
+    //  this.storage.readUser("person").then(value => {
+    //    if(value){
       
-          // window.location.href = "/home"
-       }
-     })
+    //       // window.location.href = "/home"
+    //    }
+    //  })
     }
 
   ngOnInit() {
