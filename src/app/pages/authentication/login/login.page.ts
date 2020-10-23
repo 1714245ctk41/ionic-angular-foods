@@ -90,7 +90,7 @@ export class LoginPage implements OnInit {
               sdt: 123,
               address: "address not set",
               totalcart:"",
-              like: [],
+              // like: [],
             };
             this.cruddatabase.addUser(userStorage, res.uid, 'user'); 
                 this.authentication.setStorage("person",userStorage );
