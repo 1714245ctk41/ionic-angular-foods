@@ -62,13 +62,13 @@ this.storage.read('productcart').then(value => {
   toast.present();
 
 
-    }else if(this.thanhtoan.sdt== null){
+    }else if(this.thanhtoan.sdt== undefined || this.thanhtoan.sdt == 123){
       const toast = await this.toastController.create({
         message: 'Nhập số điện thoại.',
         duration: 2000
       });
   toast.present();
-    }else if(this.thanhtoan.address == "Nhập địa chỉ"
+    }else if(this.thanhtoan.address == "address not set"
      || this.thanhtoan.address == ''||this.thanhtoan.address==undefined ){
       const toast = await this.toastController.create({
         message: 'Nhập địa chỉ.',

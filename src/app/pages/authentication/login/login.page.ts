@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone  } from "@angular/core";
 import { CrudProductService } from '../../../services/crud-database';
 import { CrudStorageService } from '../../../services/crud-storage.service';
+import { UserResolveService } from '../../../services/user-resolve.service';
+
 import { User } from "../../../models/user.model";
 import { AuthenticationService } from "../../../services/authentication.service";
 import {Route, Router} from "@angular/router";
@@ -25,13 +27,18 @@ export class LoginPage implements OnInit {
     private cruddatabase: CrudProductService,
     private router: Router,
     private nav:NavController,
-  
+    private userResolve: UserResolveService
    
     ) {
+
+      // if(this.userResolve.resolve()){
+      //     window.location.href = "/home"
+
+      // }
      this.storage.readUser("person").then(value => {
        if(value){
       
-          //window.location.href = "/home"
+          // window.location.href = "/home"
        }
      })
     }
@@ -62,7 +69,7 @@ export class LoginPage implements OnInit {
             sdt: value.data().sdt,
             address: value.data().address,
             totalcart: value.data().totalcart,
-            like:value.data().like,         
+            // like:value.data().like,         
             } ;
            this.authentication.setStorage("person", this.userSearch);
 

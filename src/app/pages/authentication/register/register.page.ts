@@ -72,6 +72,7 @@ export class RegisterPage implements OnInit {
               totalcart: "0",
               like: [],
             };
+           
               this.authentication.setStorage("person", userStorage);
                this.userService.addUser(userStorage, data.user.uid, 'user');
           });
