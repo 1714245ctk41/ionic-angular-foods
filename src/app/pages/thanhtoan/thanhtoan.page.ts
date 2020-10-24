@@ -62,7 +62,8 @@ this.storage.read('productcart').then(value => {
   toast.present();
 
 
-    }else if(this.thanhtoan.sdt== undefined || this.thanhtoan.sdt == 123){
+    }else if(this.thanhtoan.sdt== undefined || this.thanhtoan.sdt == 123 || String(this.thanhtoan.sdt)== '' 
+      ){
       const toast = await this.toastController.create({
         message: 'Nhập số điện thoại.',
         duration: 2000
@@ -92,7 +93,6 @@ this.storage.read('productcart').then(value => {
        
       })
     
-
       // "hoa_don", this.thanhtoan.id, "products"
       this.crudProductService.updateUser(this.thanhtoan, 'user');
       this.thanhtoan['totalcart'] = '0';
